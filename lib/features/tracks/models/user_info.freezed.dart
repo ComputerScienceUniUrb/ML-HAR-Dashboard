@@ -138,21 +138,25 @@ class __$$UserInfoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserInfoImpl implements _UserInfo {
   const _$UserInfoImpl(
-      {required this.age,
-      required this.weight,
-      required this.gender,
-      required this.height});
+      {this.age = 0,
+      this.weight = 0.0,
+      this.gender = Gender.notAvailable,
+      this.height = 0});
 
   factory _$UserInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserInfoImplFromJson(json);
 
   @override
+  @JsonKey()
   final int age;
   @override
+  @JsonKey()
   final double weight;
   @override
+  @JsonKey()
   final Gender gender;
   @override
+  @JsonKey()
   final int height;
 
   @override
@@ -193,10 +197,10 @@ class _$UserInfoImpl implements _UserInfo {
 
 abstract class _UserInfo implements UserInfo {
   const factory _UserInfo(
-      {required final int age,
-      required final double weight,
-      required final Gender gender,
-      required final int height}) = _$UserInfoImpl;
+      {final int age,
+      final double weight,
+      final Gender gender,
+      final int height}) = _$UserInfoImpl;
 
   factory _UserInfo.fromJson(Map<String, dynamic> json) =
       _$UserInfoImpl.fromJson;

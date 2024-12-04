@@ -8,10 +8,11 @@ part of 'user_info.dart';
 
 _$UserInfoImpl _$$UserInfoImplFromJson(Map<String, dynamic> json) =>
     _$UserInfoImpl(
-      age: (json['age'] as num).toInt(),
-      weight: (json['weight'] as num).toDouble(),
-      gender: $enumDecode(_$GenderEnumMap, json['gender']),
-      height: (json['height'] as num).toInt(),
+      age: (json['age'] as num?)?.toInt() ?? 0,
+      weight: (json['weight'] as num?)?.toDouble() ?? 0.0,
+      gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']) ??
+          Gender.notAvailable,
+      height: (json['height'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$UserInfoImplToJson(_$UserInfoImpl instance) =>

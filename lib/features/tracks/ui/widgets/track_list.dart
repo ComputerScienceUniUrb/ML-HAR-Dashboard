@@ -103,6 +103,13 @@ class _GridState extends State<_Grid> {
           field: 'smartphone_position',
           type: PlutoColumnType.text(),
         ),
+        PlutoColumn(
+          readOnly: true,
+          title: 'Durata (s)',
+          field: 'duration',
+          width: 100,
+          type: PlutoColumnType.number(),
+        ),
 
         /// Time Column definition
         PlutoColumn(
@@ -130,6 +137,27 @@ class _GridState extends State<_Grid> {
           readOnly: true,
           title: 'Gender',
           field: 'gender',
+          width: 100,
+          type: PlutoColumnType.text(),
+        ),
+        PlutoColumn(
+          readOnly: true,
+          title: 'Device',
+          field: 'device',
+          width: 100,
+          type: PlutoColumnType.text(),
+        ),
+        PlutoColumn(
+          readOnly: true,
+          title: 'OS',
+          field: 'os',
+          width: 100,
+          type: PlutoColumnType.text(),
+        ),
+        PlutoColumn(
+          readOnly: true,
+          title: 'App Version',
+          field: 'app_version',
           width: 100,
           type: PlutoColumnType.text(),
         ),
@@ -240,10 +268,14 @@ extension TrackRow on Track {
       'battery_save_mode': PlutoCell(value: isInBatterySaveMode),
       'activity_type': PlutoCell(value: activityType.name),
       'smartphone_position': PlutoCell(value: smartphonePosition.name),
+      'duration': PlutoCell(value: testDuration),
       'age': PlutoCell(value: userInfo.age),
       'height': PlutoCell(value: userInfo.height),
       'weight': PlutoCell(value: userInfo.weight),
       'gender': PlutoCell(value: userInfo.gender.name),
+      'os': PlutoCell(value: os),
+      'device': PlutoCell(value: device),
+      'app_version': PlutoCell(value: appVersion),
     };
   }
 }

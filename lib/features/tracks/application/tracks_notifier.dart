@@ -11,6 +11,11 @@ Stream<List<Track>> getTracks(Ref ref) async* {
   final stream = ref.snapshots();
   await for (final s in stream) {
     final docs = s.docs;
-    yield docs.map((d) => Track.fromJson(d.data())).toList();
+    try {
+      yield docs.map((d) => Track.fromJson(d.data())).toList();
+    } catch (ex, st) {
+      print(ex);
+      print(st);
+    }
   }
 }

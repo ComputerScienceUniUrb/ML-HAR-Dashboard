@@ -8,10 +8,10 @@ part 'user_info.g.dart';
 @freezed
 class UserInfo with _$UserInfo {
   const factory UserInfo({
-    required int age,
-    required double weight,
-    required Gender gender,
-    required int height,
+    @Default(0) int age,
+    @Default(0.0) double weight,
+    @Default(Gender.notAvailable) Gender gender,
+    @Default(0) int height,
   }) = _UserInfo;
 
   factory UserInfo.fromJson(Map<String, dynamic> json) =>

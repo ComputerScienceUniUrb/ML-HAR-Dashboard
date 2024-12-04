@@ -1,1 +1,35 @@
-{"firestore":{"rules":"firestore.rules","indexes":"firestore.indexes.json"},"hosting":{"public":"build/web","ignore":["firebase.json","**/.*","**/node_modules/**"]},"flutter":{"platforms":{"macos":{"default":{"projectId":"ml-har","appId":"1:911313546182:ios:d510a65ee7380e42e520c7","uploadDebugSymbols":false,"fileOutput":"macos/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"ml-har","configurations":{"macos":"1:911313546182:ios:d510a65ee7380e42e520c7","web":"1:911313546182:web:a51b03d74c256d53e520c7"}}}}}}
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "flutter": {
+    "platforms": {
+      "macos": {
+        "default": {
+          "projectId": "ml-har",
+          "appId": "1:911313546182:ios:d510a65ee7380e42e520c7",
+          "uploadDebugSymbols": false,
+          "fileOutput": "macos/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "ml-har",
+          "configurations": {
+            "macos": "1:911313546182:ios:d510a65ee7380e42e520c7",
+            "web": "1:911313546182:web:a51b03d74c256d53e520c7"
+          }
+        }
+      }
+    }
+  }
+}

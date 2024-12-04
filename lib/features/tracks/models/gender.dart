@@ -1,4 +1,4 @@
-enum Gender{
+enum Gender {
   male,
   female,
   notBinary,

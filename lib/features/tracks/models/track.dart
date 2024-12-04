@@ -19,6 +19,9 @@ class Track with _$Track {
     required bool isInBatterySaveMode,
     required String cloudId,
     required String downloadUrl,
+    @Default('-') String os,
+    @Default('-') String device,
+    @Default('-') String appVersion,
     required int testDuration,
   }) = _Track;
 

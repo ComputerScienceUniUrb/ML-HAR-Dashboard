@@ -30,6 +30,9 @@ mixin _$Track {
   bool get isInBatterySaveMode => throw _privateConstructorUsedError;
   String get cloudId => throw _privateConstructorUsedError;
   String get downloadUrl => throw _privateConstructorUsedError;
+  String get os => throw _privateConstructorUsedError;
+  String get device => throw _privateConstructorUsedError;
+  String get appVersion => throw _privateConstructorUsedError;
   int get testDuration => throw _privateConstructorUsedError;
 
   /// Serializes this Track to a JSON map.
@@ -55,6 +58,9 @@ abstract class $TrackCopyWith<$Res> {
       bool isInBatterySaveMode,
       String cloudId,
       String downloadUrl,
+      String os,
+      String device,
+      String appVersion,
       int testDuration});
 
   $UserInfoCopyWith<$Res> get userInfo;
@@ -83,6 +89,9 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
     Object? isInBatterySaveMode = null,
     Object? cloudId = null,
     Object? downloadUrl = null,
+    Object? os = null,
+    Object? device = null,
+    Object? appVersion = null,
     Object? testDuration = null,
   }) {
     return _then(_value.copyWith(
@@ -118,6 +127,18 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
           ? _value.downloadUrl
           : downloadUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      os: null == os
+          ? _value.os
+          : os // ignore: cast_nullable_to_non_nullable
+              as String,
+      device: null == device
+          ? _value.device
+          : device // ignore: cast_nullable_to_non_nullable
+              as String,
+      appVersion: null == appVersion
+          ? _value.appVersion
+          : appVersion // ignore: cast_nullable_to_non_nullable
+              as String,
       testDuration: null == testDuration
           ? _value.testDuration
           : testDuration // ignore: cast_nullable_to_non_nullable
@@ -152,6 +173,9 @@ abstract class _$$TrackImplCopyWith<$Res> implements $TrackCopyWith<$Res> {
       bool isInBatterySaveMode,
       String cloudId,
       String downloadUrl,
+      String os,
+      String device,
+      String appVersion,
       int testDuration});
 
   @override
@@ -179,6 +203,9 @@ class __$$TrackImplCopyWithImpl<$Res>
     Object? isInBatterySaveMode = null,
     Object? cloudId = null,
     Object? downloadUrl = null,
+    Object? os = null,
+    Object? device = null,
+    Object? appVersion = null,
     Object? testDuration = null,
   }) {
     return _then(_$TrackImpl(
@@ -214,6 +241,18 @@ class __$$TrackImplCopyWithImpl<$Res>
           ? _value.downloadUrl
           : downloadUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      os: null == os
+          ? _value.os
+          : os // ignore: cast_nullable_to_non_nullable
+              as String,
+      device: null == device
+          ? _value.device
+          : device // ignore: cast_nullable_to_non_nullable
+              as String,
+      appVersion: null == appVersion
+          ? _value.appVersion
+          : appVersion // ignore: cast_nullable_to_non_nullable
+              as String,
       testDuration: null == testDuration
           ? _value.testDuration
           : testDuration // ignore: cast_nullable_to_non_nullable
@@ -234,6 +273,9 @@ class _$TrackImpl implements _Track {
       required this.isInBatterySaveMode,
       required this.cloudId,
       required this.downloadUrl,
+      this.os = '-',
+      this.device = '-',
+      this.appVersion = '-',
       required this.testDuration});
 
   factory _$TrackImpl.fromJson(Map<String, dynamic> json) =>
@@ -257,11 +299,20 @@ class _$TrackImpl implements _Track {
   @override
   final String downloadUrl;
   @override
+  @JsonKey()
+  final String os;
+  @override
+  @JsonKey()
+  final String device;
+  @override
+  @JsonKey()
+  final String appVersion;
+  @override
   final int testDuration;
 
   @override
   String toString() {
-    return 'Track(activityType: $activityType, smartphonePosition: $smartphonePosition, timestamp: $timestamp, userInfo: $userInfo, startBatteryLevel: $startBatteryLevel, isInBatterySaveMode: $isInBatterySaveMode, cloudId: $cloudId, downloadUrl: $downloadUrl, testDuration: $testDuration)';
+    return 'Track(activityType: $activityType, smartphonePosition: $smartphonePosition, timestamp: $timestamp, userInfo: $userInfo, startBatteryLevel: $startBatteryLevel, isInBatterySaveMode: $isInBatterySaveMode, cloudId: $cloudId, downloadUrl: $downloadUrl, os: $os, device: $device, appVersion: $appVersion, testDuration: $testDuration)';
   }
 
   @override
@@ -284,6 +335,10 @@ class _$TrackImpl implements _Track {
             (identical(other.cloudId, cloudId) || other.cloudId == cloudId) &&
             (identical(other.downloadUrl, downloadUrl) ||
                 other.downloadUrl == downloadUrl) &&
+            (identical(other.os, os) || other.os == os) &&
+            (identical(other.device, device) || other.device == device) &&
+            (identical(other.appVersion, appVersion) ||
+                other.appVersion == appVersion) &&
             (identical(other.testDuration, testDuration) ||
                 other.testDuration == testDuration));
   }
@@ -300,6 +355,9 @@ class _$TrackImpl implements _Track {
       isInBatterySaveMode,
       cloudId,
       downloadUrl,
+      os,
+      device,
+      appVersion,
       testDuration);
 
   /// Create a copy of Track
@@ -328,6 +386,9 @@ abstract class _Track implements Track {
       required final bool isInBatterySaveMode,
       required final String cloudId,
       required final String downloadUrl,
+      final String os,
+      final String device,
+      final String appVersion,
       required final int testDuration}) = _$TrackImpl;
 
   factory _Track.fromJson(Map<String, dynamic> json) = _$TrackImpl.fromJson;
@@ -349,6 +410,12 @@ abstract class _Track implements Track {
   String get cloudId;
   @override
   String get downloadUrl;
+  @override
+  String get os;
+  @override
+  String get device;
+  @override
+  String get appVersion;
   @override
   int get testDuration;
 

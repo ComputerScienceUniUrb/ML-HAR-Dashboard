@@ -16,6 +16,9 @@ _$TrackImpl _$$TrackImplFromJson(Map<String, dynamic> json) => _$TrackImpl(
       isInBatterySaveMode: json['isInBatterySaveMode'] as bool,
       cloudId: json['cloudId'] as String,
       downloadUrl: json['downloadUrl'] as String,
+      os: json['os'] as String? ?? '-',
+      device: json['device'] as String? ?? '-',
+      appVersion: json['appVersion'] as String? ?? '-',
       testDuration: (json['testDuration'] as num).toInt(),
     );
 
@@ -30,6 +33,9 @@ Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
       'isInBatterySaveMode': instance.isInBatterySaveMode,
       'cloudId': instance.cloudId,
       'downloadUrl': instance.downloadUrl,
+      'os': instance.os,
+      'device': instance.device,
+      'appVersion': instance.appVersion,
       'testDuration': instance.testDuration,
     };
 

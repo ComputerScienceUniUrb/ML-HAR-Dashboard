@@ -5,4 +5,3 @@ enum SmartphonePosition {
   pouch,
   handleBar,
 }
-

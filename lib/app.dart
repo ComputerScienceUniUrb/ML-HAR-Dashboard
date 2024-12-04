@@ -1,4 +1,5 @@
 import 'package:aifit_dashboard/home.dart';
+import 'package:aifit_dashboard/router.dart';
 import 'package:flutter/material.dart';
 
 class AIFitDashboardApp extends StatelessWidget {
@@ -6,13 +7,13 @@ class AIFitDashboardApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
     );
   }
 }
