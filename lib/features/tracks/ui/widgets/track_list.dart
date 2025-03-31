@@ -12,26 +12,31 @@ class TrackList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(getTracksProvider);
-    return switch (state) {
-      AsyncData(:final value) => _Grid(
-          tracks: value,
-        ),
-      AsyncError(:final error) => Text('Error: $error'),
-      _ => const Center(child: CircularProgressIndicator()),
-    };
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Tutte le tracce'),
+      ),
+      body: switch (state) {
+        AsyncData(:final value) => TrackGrid(
+            tracks: value,
+          ),
+        AsyncError(:final error) => Text('Error: $error'),
+        _ => const Center(child: CircularProgressIndicator()),
+      },
+    );
   }
 }
 
-class _Grid extends StatefulWidget {
+class TrackGrid extends StatefulWidget {
   final List<Track> tracks;
 
-  const _Grid({super.key, required this.tracks});
+  const TrackGrid({super.key, required this.tracks});
 
   @override
-  State<_Grid> createState() => _GridState();
+  State<TrackGrid> createState() => _TrackGridState();
 }
 
-class _GridState extends State<_Grid> {
+class _TrackGridState extends State<TrackGrid> {
   final List<PlutoColumn> columns = [];
 
   final List<PlutoRow> rows = [];
@@ -61,7 +66,7 @@ class _GridState extends State<_Grid> {
                   launchUrl(uri);
                 }
               },
-              child: Text('Download'),
+              child: const Text('Download'),
             );
           },
         ),
@@ -69,6 +74,12 @@ class _GridState extends State<_Grid> {
           readOnly: true,
           title: 'Date',
           field: 'date',
+          type: PlutoColumnType.text(),
+        ),
+        PlutoColumn(
+          readOnly: true,
+          title: 'EXP. CODE',
+          field: 'code',
           type: PlutoColumnType.text(),
         ),
         PlutoColumn(
@@ -265,14 +276,15 @@ extension TrackRow on Track {
       'download_url': PlutoCell(value: downloadUrl),
       'date': PlutoCell(value: dateFormat.format(timestamp)),
       'battery': PlutoCell(value: startBatteryLevel),
+      'code': PlutoCell(value: experimentCode ?? '-'),
       'battery_save_mode': PlutoCell(value: isInBatterySaveMode),
-      'activity_type': PlutoCell(value: activityType.name),
-      'smartphone_position': PlutoCell(value: smartphonePosition.name),
+      'activity_type': PlutoCell(value: activityType.translate),
+      'smartphone_position': PlutoCell(value: smartphonePosition.translate),
       'duration': PlutoCell(value: testDuration),
       'age': PlutoCell(value: userInfo.age),
       'height': PlutoCell(value: userInfo.height),
       'weight': PlutoCell(value: userInfo.weight),
-      'gender': PlutoCell(value: userInfo.gender.name),
+      'gender': PlutoCell(value: userInfo.gender.translate),
       'os': PlutoCell(value: os),
       'device': PlutoCell(value: device),
       'app_version': PlutoCell(value: appVersion),

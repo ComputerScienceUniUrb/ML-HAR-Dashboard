@@ -16,6 +16,7 @@ _$TrackImpl _$$TrackImplFromJson(Map<String, dynamic> json) => _$TrackImpl(
       isInBatterySaveMode: json['isInBatterySaveMode'] as bool,
       cloudId: json['cloudId'] as String,
       downloadUrl: json['downloadUrl'] as String,
+      experimentCode: json['experimentCode'] as String?,
       os: json['os'] as String? ?? '-',
       device: json['device'] as String? ?? '-',
       appVersion: json['appVersion'] as String? ?? '-',
@@ -33,6 +34,7 @@ Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
       'isInBatterySaveMode': instance.isInBatterySaveMode,
       'cloudId': instance.cloudId,
       'downloadUrl': instance.downloadUrl,
+      'experimentCode': instance.experimentCode,
       'os': instance.os,
       'device': instance.device,
       'appVersion': instance.appVersion,
@@ -40,6 +42,8 @@ Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
     };
 
 const _$ActivityTypeEnumMap = {
+  ActivityType.armRotation: 'armRotation',
+  ActivityType.clapHands: 'clapHands',
   ActivityType.onBicycle: 'onBicycle',
   ActivityType.inVehicle: 'inVehicle',
   ActivityType.stand: 'stand',
@@ -49,9 +53,14 @@ const _$ActivityTypeEnumMap = {
   ActivityType.lay: 'lay',
   ActivityType.jump: 'jump',
   ActivityType.walk: 'walk',
+  ActivityType.walkOnSpot: 'walkOnSpot',
   ActivityType.walkingBack: 'walkingBack',
   ActivityType.walkingCircle: 'walkingCircle',
+  ActivityType.tapisRoulant: 'tapisRoulant',
+  ActivityType.horizontalCyclette: 'horizontalCyclette',
+  ActivityType.verticalCyclette: 'verticalCyclette',
   ActivityType.run: 'run',
+  ActivityType.runOnSpot: 'runOnSpot',
 };
 
 const _$SmartphonePositionEnumMap = {

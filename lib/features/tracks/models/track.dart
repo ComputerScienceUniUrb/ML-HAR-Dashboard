@@ -19,6 +19,7 @@ class Track with _$Track {
     required bool isInBatterySaveMode,
     required String cloudId,
     required String downloadUrl,
+    String? experimentCode,
     @Default('-') String os,
     @Default('-') String device,
     @Default('-') String appVersion,

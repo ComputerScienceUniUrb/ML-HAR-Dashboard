@@ -30,6 +30,7 @@ mixin _$Track {
   bool get isInBatterySaveMode => throw _privateConstructorUsedError;
   String get cloudId => throw _privateConstructorUsedError;
   String get downloadUrl => throw _privateConstructorUsedError;
+  String? get experimentCode => throw _privateConstructorUsedError;
   String get os => throw _privateConstructorUsedError;
   String get device => throw _privateConstructorUsedError;
   String get appVersion => throw _privateConstructorUsedError;
@@ -58,6 +59,7 @@ abstract class $TrackCopyWith<$Res> {
       bool isInBatterySaveMode,
       String cloudId,
       String downloadUrl,
+      String? experimentCode,
       String os,
       String device,
       String appVersion,
@@ -89,6 +91,7 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
     Object? isInBatterySaveMode = null,
     Object? cloudId = null,
     Object? downloadUrl = null,
+    Object? experimentCode = freezed,
     Object? os = null,
     Object? device = null,
     Object? appVersion = null,
@@ -127,6 +130,10 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
           ? _value.downloadUrl
           : downloadUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      experimentCode: freezed == experimentCode
+          ? _value.experimentCode
+          : experimentCode // ignore: cast_nullable_to_non_nullable
+              as String?,
       os: null == os
           ? _value.os
           : os // ignore: cast_nullable_to_non_nullable
@@ -173,6 +180,7 @@ abstract class _$$TrackImplCopyWith<$Res> implements $TrackCopyWith<$Res> {
       bool isInBatterySaveMode,
       String cloudId,
       String downloadUrl,
+      String? experimentCode,
       String os,
       String device,
       String appVersion,
@@ -203,6 +211,7 @@ class __$$TrackImplCopyWithImpl<$Res>
     Object? isInBatterySaveMode = null,
     Object? cloudId = null,
     Object? downloadUrl = null,
+    Object? experimentCode = freezed,
     Object? os = null,
     Object? device = null,
     Object? appVersion = null,
@@ -241,6 +250,10 @@ class __$$TrackImplCopyWithImpl<$Res>
           ? _value.downloadUrl
           : downloadUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      experimentCode: freezed == experimentCode
+          ? _value.experimentCode
+          : experimentCode // ignore: cast_nullable_to_non_nullable
+              as String?,
       os: null == os
           ? _value.os
           : os // ignore: cast_nullable_to_non_nullable
@@ -273,6 +286,7 @@ class _$TrackImpl implements _Track {
       required this.isInBatterySaveMode,
       required this.cloudId,
       required this.downloadUrl,
+      this.experimentCode,
       this.os = '-',
       this.device = '-',
       this.appVersion = '-',
@@ -299,6 +313,8 @@ class _$TrackImpl implements _Track {
   @override
   final String downloadUrl;
   @override
+  final String? experimentCode;
+  @override
   @JsonKey()
   final String os;
   @override
@@ -312,7 +328,7 @@ class _$TrackImpl implements _Track {
 
   @override
   String toString() {
-    return 'Track(activityType: $activityType, smartphonePosition: $smartphonePosition, timestamp: $timestamp, userInfo: $userInfo, startBatteryLevel: $startBatteryLevel, isInBatterySaveMode: $isInBatterySaveMode, cloudId: $cloudId, downloadUrl: $downloadUrl, os: $os, device: $device, appVersion: $appVersion, testDuration: $testDuration)';
+    return 'Track(activityType: $activityType, smartphonePosition: $smartphonePosition, timestamp: $timestamp, userInfo: $userInfo, startBatteryLevel: $startBatteryLevel, isInBatterySaveMode: $isInBatterySaveMode, cloudId: $cloudId, downloadUrl: $downloadUrl, experimentCode: $experimentCode, os: $os, device: $device, appVersion: $appVersion, testDuration: $testDuration)';
   }
 
   @override
@@ -335,6 +351,8 @@ class _$TrackImpl implements _Track {
             (identical(other.cloudId, cloudId) || other.cloudId == cloudId) &&
             (identical(other.downloadUrl, downloadUrl) ||
                 other.downloadUrl == downloadUrl) &&
+            (identical(other.experimentCode, experimentCode) ||
+                other.experimentCode == experimentCode) &&
             (identical(other.os, os) || other.os == os) &&
             (identical(other.device, device) || other.device == device) &&
             (identical(other.appVersion, appVersion) ||
@@ -355,6 +373,7 @@ class _$TrackImpl implements _Track {
       isInBatterySaveMode,
       cloudId,
       downloadUrl,
+      experimentCode,
       os,
       device,
       appVersion,
@@ -386,6 +405,7 @@ abstract class _Track implements Track {
       required final bool isInBatterySaveMode,
       required final String cloudId,
       required final String downloadUrl,
+      final String? experimentCode,
       final String os,
       final String device,
       final String appVersion,
@@ -410,6 +430,8 @@ abstract class _Track implements Track {
   String get cloudId;
   @override
   String get downloadUrl;
+  @override
+  String? get experimentCode;
   @override
   String get os;
   @override

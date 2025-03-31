@@ -1,4 +1,6 @@
 enum ActivityType {
+  armRotation,
+  clapHands,
   onBicycle,
   inVehicle,
   stand,
@@ -8,7 +10,36 @@ enum ActivityType {
   lay,
   jump,
   walk,
+  walkOnSpot,
   walkingBack,
   walkingCircle,
+  tapisRoulant,
+  horizontalCyclette,
+  verticalCyclette,
   run,
+  runOnSpot;
+
+  String get translate {
+    return switch (this) {
+      ActivityType.armRotation => 'Rotazione delle braccia',
+      ActivityType.clapHands => 'Battito di mani',
+      ActivityType.onBicycle => 'Bicicletta',
+      ActivityType.inVehicle => 'Su veicolo',
+      ActivityType.stand => 'Fermo in piedi',
+      ActivityType.standSit => 'Fermo da seduto',
+      ActivityType.sit => 'Seduto',
+      ActivityType.talkSit => 'Parlando da seduti',
+      ActivityType.lay => 'Fermo',
+      ActivityType.jump => 'Salto',
+      ActivityType.walk => 'Camminata',
+      ActivityType.walkOnSpot => 'Camminata sul posto',
+      ActivityType.walkingBack => 'Camminata all\'indietro',
+      ActivityType.walkingCircle => 'Camminata in cerchio',
+      ActivityType.tapisRoulant => 'Tapis Roulant',
+      ActivityType.horizontalCyclette => 'Cyclette orizzontale',
+      ActivityType.verticalCyclette => 'Cyclette verticale',
+      ActivityType.run => 'Corsa',
+      ActivityType.runOnSpot => 'Corsa sul posto',
+    };
+  }
 }
