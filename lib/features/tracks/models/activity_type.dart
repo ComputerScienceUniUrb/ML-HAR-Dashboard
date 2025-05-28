@@ -17,7 +17,15 @@ enum ActivityType {
   horizontalCyclette,
   verticalCyclette,
   run,
-  runOnSpot;
+  runOnSpot,
+  forwardArmRotation,
+  backwardsArmRotation,
+  sideOpening,
+  upperArmAndTorsoStretch,
+  middleSquat,
+  standingLunges,
+  heelLift,
+  torsoTorsion;
 
   String get translate {
     return switch (this) {
@@ -40,6 +48,15 @@ enum ActivityType {
       ActivityType.verticalCyclette => 'Cyclette verticale',
       ActivityType.run => 'Corsa',
       ActivityType.runOnSpot => 'Corsa sul posto',
+      ActivityType.forwardArmRotation => 'Rotazione delle braccia avanti',
+      ActivityType.backwardsArmRotation => 'Rotazione delle braccia indietro',
+      ActivityType.sideOpening => 'Apertura laterale',
+      ActivityType.upperArmAndTorsoStretch =>
+        'Allungamento torso e braccio alto',
+      ActivityType.middleSquat => 'Mezzi squat sul posto',
+      ActivityType.standingLunges => 'Affondi da fermo',
+      ActivityType.heelLift => 'Sollevamento talloni',
+      ActivityType.torsoTorsion => 'Torsione del busto',
     };
   }
 }

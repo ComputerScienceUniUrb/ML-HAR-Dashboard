@@ -17,6 +17,7 @@ _$ExperimentImpl _$$ExperimentImplFromJson(Map<String, dynamic> json) =>
           _$ActivityTypeEnumMap, json['activityTypeOverride']),
       smartphonePositionOverride: $enumDecodeNullable(
           _$SmartphonePositionEnumMap, json['smartphonePositionOverride']),
+      duration: (json['duration'] as num?)?.toInt(),
       enabled: json['enabled'] as bool? ?? false,
     );
 
@@ -31,6 +32,7 @@ Map<String, dynamic> _$$ExperimentImplToJson(_$ExperimentImpl instance) =>
           _$ActivityTypeEnumMap[instance.activityTypeOverride],
       'smartphonePositionOverride':
           _$SmartphonePositionEnumMap[instance.smartphonePositionOverride],
+      'duration': instance.duration,
       'enabled': instance.enabled,
     };
 
@@ -54,6 +56,14 @@ const _$ActivityTypeEnumMap = {
   ActivityType.verticalCyclette: 'verticalCyclette',
   ActivityType.run: 'run',
   ActivityType.runOnSpot: 'runOnSpot',
+  ActivityType.forwardArmRotation: 'forwardArmRotation',
+  ActivityType.backwardsArmRotation: 'backwardsArmRotation',
+  ActivityType.sideOpening: 'sideOpening',
+  ActivityType.upperArmAndTorsoStretch: 'upperArmAndTorsoStretch',
+  ActivityType.middleSquat: 'middleSquat',
+  ActivityType.standingLunges: 'standingLunges',
+  ActivityType.heelLift: 'heelLift',
+  ActivityType.torsoTorsion: 'torsoTorsion',
 };
 
 const _$SmartphonePositionEnumMap = {

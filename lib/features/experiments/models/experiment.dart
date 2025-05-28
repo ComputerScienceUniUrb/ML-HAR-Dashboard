@@ -18,6 +18,7 @@ class Experiment with _$Experiment {
     String? description,
     ActivityType? activityTypeOverride,
     SmartphonePosition? smartphonePositionOverride,
+    int? duration,
     @Default(false) bool enabled,
   }) = _Experiment;
 

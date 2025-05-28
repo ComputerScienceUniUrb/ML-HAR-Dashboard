@@ -1,7 +1,7 @@
 name: aifit_dashboard
 description: "A new Flutter project."
 publish_to: 'none'
-version: 0.0.4+4
+version: 0.0.6+6
 
 environment:
   sdk: ^3.5.4
@@ -37,6 +37,7 @@ dev_dependencies:
   build_runner:
   custom_lint:
   json_serializable: ^6.9.0
+  package_info_plus: ^8.3.0
   riverpod_generator: ^2.6.3
   riverpod_lint: ^2.6.3
 

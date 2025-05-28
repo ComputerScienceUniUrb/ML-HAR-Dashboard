@@ -29,6 +29,7 @@ mixin _$Experiment {
   ActivityType? get activityTypeOverride => throw _privateConstructorUsedError;
   SmartphonePosition? get smartphonePositionOverride =>
       throw _privateConstructorUsedError;
+  int? get duration => throw _privateConstructorUsedError;
   bool get enabled => throw _privateConstructorUsedError;
 
   /// Serializes this Experiment to a JSON map.
@@ -55,6 +56,7 @@ abstract class $ExperimentCopyWith<$Res> {
       String? description,
       ActivityType? activityTypeOverride,
       SmartphonePosition? smartphonePositionOverride,
+      int? duration,
       bool enabled});
 }
 
@@ -80,6 +82,7 @@ class _$ExperimentCopyWithImpl<$Res, $Val extends Experiment>
     Object? description = freezed,
     Object? activityTypeOverride = freezed,
     Object? smartphonePositionOverride = freezed,
+    Object? duration = freezed,
     Object? enabled = null,
   }) {
     return _then(_value.copyWith(
@@ -111,6 +114,10 @@ class _$ExperimentCopyWithImpl<$Res, $Val extends Experiment>
           ? _value.smartphonePositionOverride
           : smartphonePositionOverride // ignore: cast_nullable_to_non_nullable
               as SmartphonePosition?,
+      duration: freezed == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int?,
       enabled: null == enabled
           ? _value.enabled
           : enabled // ignore: cast_nullable_to_non_nullable
@@ -135,6 +142,7 @@ abstract class _$$ExperimentImplCopyWith<$Res>
       String? description,
       ActivityType? activityTypeOverride,
       SmartphonePosition? smartphonePositionOverride,
+      int? duration,
       bool enabled});
 }
 
@@ -158,6 +166,7 @@ class __$$ExperimentImplCopyWithImpl<$Res>
     Object? description = freezed,
     Object? activityTypeOverride = freezed,
     Object? smartphonePositionOverride = freezed,
+    Object? duration = freezed,
     Object? enabled = null,
   }) {
     return _then(_$ExperimentImpl(
@@ -189,6 +198,10 @@ class __$$ExperimentImplCopyWithImpl<$Res>
           ? _value.smartphonePositionOverride
           : smartphonePositionOverride // ignore: cast_nullable_to_non_nullable
               as SmartphonePosition?,
+      duration: freezed == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int?,
       enabled: null == enabled
           ? _value.enabled
           : enabled // ignore: cast_nullable_to_non_nullable
@@ -208,6 +221,7 @@ class _$ExperimentImpl implements _Experiment {
       this.description,
       this.activityTypeOverride,
       this.smartphonePositionOverride,
+      this.duration,
       this.enabled = false});
 
   factory _$ExperimentImpl.fromJson(Map<String, dynamic> json) =>
@@ -229,12 +243,14 @@ class _$ExperimentImpl implements _Experiment {
   @override
   final SmartphonePosition? smartphonePositionOverride;
   @override
+  final int? duration;
+  @override
   @JsonKey()
   final bool enabled;
 
   @override
   String toString() {
-    return 'Experiment(id: $id, name: $name, shortCode: $shortCode, createdAt: $createdAt, description: $description, activityTypeOverride: $activityTypeOverride, smartphonePositionOverride: $smartphonePositionOverride, enabled: $enabled)';
+    return 'Experiment(id: $id, name: $name, shortCode: $shortCode, createdAt: $createdAt, description: $description, activityTypeOverride: $activityTypeOverride, smartphonePositionOverride: $smartphonePositionOverride, duration: $duration, enabled: $enabled)';
   }
 
   @override
@@ -256,13 +272,24 @@ class _$ExperimentImpl implements _Experiment {
                     smartphonePositionOverride) ||
                 other.smartphonePositionOverride ==
                     smartphonePositionOverride) &&
+            (identical(other.duration, duration) ||
+                other.duration == duration) &&
             (identical(other.enabled, enabled) || other.enabled == enabled));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, shortCode, createdAt,
-      description, activityTypeOverride, smartphonePositionOverride, enabled);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      shortCode,
+      createdAt,
+      description,
+      activityTypeOverride,
+      smartphonePositionOverride,
+      duration,
+      enabled);
 
   /// Create a copy of Experiment
   /// with the given fields replaced by the non-null parameter values.
@@ -289,6 +316,7 @@ abstract class _Experiment implements Experiment {
       final String? description,
       final ActivityType? activityTypeOverride,
       final SmartphonePosition? smartphonePositionOverride,
+      final int? duration,
       final bool enabled}) = _$ExperimentImpl;
 
   factory _Experiment.fromJson(Map<String, dynamic> json) =
@@ -309,6 +337,8 @@ abstract class _Experiment implements Experiment {
   ActivityType? get activityTypeOverride;
   @override
   SmartphonePosition? get smartphonePositionOverride;
+  @override
+  int? get duration;
   @override
   bool get enabled;
 

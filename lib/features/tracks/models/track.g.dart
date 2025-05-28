@@ -61,6 +61,14 @@ const _$ActivityTypeEnumMap = {
   ActivityType.verticalCyclette: 'verticalCyclette',
   ActivityType.run: 'run',
   ActivityType.runOnSpot: 'runOnSpot',
+  ActivityType.forwardArmRotation: 'forwardArmRotation',
+  ActivityType.backwardsArmRotation: 'backwardsArmRotation',
+  ActivityType.sideOpening: 'sideOpening',
+  ActivityType.upperArmAndTorsoStretch: 'upperArmAndTorsoStretch',
+  ActivityType.middleSquat: 'middleSquat',
+  ActivityType.standingLunges: 'standingLunges',
+  ActivityType.heelLift: 'heelLift',
+  ActivityType.torsoTorsion: 'torsoTorsion',
 };
 
 const _$SmartphonePositionEnumMap = {

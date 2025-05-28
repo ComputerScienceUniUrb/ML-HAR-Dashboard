@@ -1,8 +1,12 @@
+import 'package:aifit_dashboard/core/application/version_notifier.dart';
+import 'package:aifit_dashboard/core/ui/version_widget.dart';
 import 'package:aifit_dashboard/features/tracks/ui/widgets/track_list.dart';
 import 'package:aifit_dashboard/router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,6 +16,8 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('AIFit Dashboard'),
+        centerTitle: true,
+        leading: const VersionWidget(),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
@@ -25,13 +31,13 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
-            title: Text('Tracce'),
+            title: const Text('Tracce'),
             onTap: () {
               context.go('/tracks');
             },
           ),
           ListTile(
-            title: Text('Esperimenti'),
+            title: const Text('Esperimenti'),
             onTap: () {
               context.go('/experiments');
             },
