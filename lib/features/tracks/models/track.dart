@@ -1,3 +1,4 @@
+import 'package:aifit_dashboard/core/data/converters.dart';
 import 'package:aifit_dashboard/features/tracks/models/activity_type.dart';
 import 'package:aifit_dashboard/features/tracks/models/smartphone_position.dart';
 import 'package:aifit_dashboard/features/tracks/models/user_info.dart';
@@ -29,14 +30,4 @@ class Track with _$Track {
   factory Track.fromJson(Map<String, dynamic> json) => _$TrackFromJson(json);
 }
 
-class TimestampConverter implements JsonConverter<DateTime, dynamic> {
-  const TimestampConverter();
 
-  @override
-  DateTime fromJson(dynamic value) {
-    return (value as Timestamp).toDate();
-  }
-
-  @override
-  Timestamp toJson(DateTime fieldValue) => Timestamp.fromDate(fieldValue);
-}

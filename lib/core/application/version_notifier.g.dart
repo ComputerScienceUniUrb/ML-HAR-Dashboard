@@ -6,7 +6,7 @@ part of 'version_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getVersionHash() => r'ebd5fdbcba95e01299b195c226145122cd32da68';
+String _$getVersionHash() => r'b7d3a39d5a66b6d7d961ce7e9bd7c0ad1a80114b';
 
 /// See also [getVersion].
 @ProviderFor(getVersion)

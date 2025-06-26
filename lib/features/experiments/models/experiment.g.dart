@@ -9,6 +9,7 @@ part of 'experiment.dart';
 _$ExperimentImpl _$$ExperimentImplFromJson(Map<String, dynamic> json) =>
     _$ExperimentImpl(
       id: json['id'] as String,
+      userId: json['userId'] as String,
       name: json['name'] as String,
       shortCode: json['shortCode'] as String,
       createdAt: const TimestampConverter().fromJson(json['createdAt']),
@@ -24,6 +25,7 @@ _$ExperimentImpl _$$ExperimentImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ExperimentImplToJson(_$ExperimentImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'userId': instance.userId,
       'name': instance.name,
       'shortCode': instance.shortCode,
       'createdAt': const TimestampConverter().toJson(instance.createdAt),

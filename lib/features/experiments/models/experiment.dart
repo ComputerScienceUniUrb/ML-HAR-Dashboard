@@ -1,3 +1,4 @@
+import 'package:aifit_dashboard/core/data/converters.dart';
 import 'package:aifit_dashboard/features/tracks/models/activity_type.dart';
 import 'package:aifit_dashboard/features/tracks/models/smartphone_position.dart';
 import 'package:aifit_dashboard/features/tracks/models/track.dart';
@@ -12,6 +13,7 @@ part 'experiment.g.dart';
 class Experiment with _$Experiment {
   const factory Experiment({
     required String id,
+    required String userId,
     required String name,
     required String shortCode,
     @TimestampConverter() required DateTime createdAt,

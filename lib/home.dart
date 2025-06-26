@@ -31,6 +31,12 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
+            title: const Text('Sessioni'),
+            onTap: () {
+              context.go('/sessions');
+            },
+          ),
+          ListTile(
             title: const Text('Tracce'),
             onTap: () {
               context.go('/tracks');

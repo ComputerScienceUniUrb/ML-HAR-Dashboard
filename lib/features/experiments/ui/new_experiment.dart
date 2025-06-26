@@ -6,6 +6,7 @@ import 'package:aifit_dashboard/features/tracks/models/activity_type.dart';
 import 'package:aifit_dashboard/features/tracks/models/smartphone_position.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -57,7 +58,7 @@ class NewExperimentScreen extends HookConsumerWidget {
     final descController =
         useTextEditingController(text: experiment?.description);
     final shortCodeController =
-        useTextEditingController(text: experiment?.shortCode);
+        useTextEditingController(text: experiment?.shortCode.toUpperCase());
     final enabled = useState(experiment?.enabled ?? false);
     final activityTypeOverride =
         useState<ActivityType?>(experiment?.activityTypeOverride);
@@ -74,13 +75,23 @@ class NewExperimentScreen extends HookConsumerWidget {
             onPressed: isLoading.value
                 ? null
                 : () async {
+                    final userId = FirebaseAuth.instance.currentUser?.uid;
+
+                    if (userId == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Utente non autenticato.')));
+                      return;
+                    }
+
                     SmartDialog.showLoading();
                     try {
                       isLoading.value = true;
                       final data = Experiment(
+                        userId: userId,
                         id: experiment?.id ?? const Uuid().v4(),
                         name: nameController.text.trim(),
-                        shortCode: shortCodeController.text.trim(),
+                        shortCode:
+                            shortCodeController.text.trim().toLowerCase(),
                         enabled: enabled.value,
                         createdAt: experiment?.createdAt ?? DateTime.now(),
                         activityTypeOverride: activityTypeOverride.value,

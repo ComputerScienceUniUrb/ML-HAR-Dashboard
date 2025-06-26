@@ -21,6 +21,7 @@ Experiment _$ExperimentFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Experiment {
   String get id => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get shortCode => throw _privateConstructorUsedError;
   @TimestampConverter()
@@ -50,6 +51,7 @@ abstract class $ExperimentCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String userId,
       String name,
       String shortCode,
       @TimestampConverter() DateTime createdAt,
@@ -76,6 +78,7 @@ class _$ExperimentCopyWithImpl<$Res, $Val extends Experiment>
   @override
   $Res call({
     Object? id = null,
+    Object? userId = null,
     Object? name = null,
     Object? shortCode = null,
     Object? createdAt = null,
@@ -89,6 +92,10 @@ class _$ExperimentCopyWithImpl<$Res, $Val extends Experiment>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -136,6 +143,7 @@ abstract class _$$ExperimentImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
+      String userId,
       String name,
       String shortCode,
       @TimestampConverter() DateTime createdAt,
@@ -160,6 +168,7 @@ class __$$ExperimentImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? userId = null,
     Object? name = null,
     Object? shortCode = null,
     Object? createdAt = null,
@@ -173,6 +182,10 @@ class __$$ExperimentImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -215,6 +228,7 @@ class __$$ExperimentImplCopyWithImpl<$Res>
 class _$ExperimentImpl implements _Experiment {
   const _$ExperimentImpl(
       {required this.id,
+      required this.userId,
       required this.name,
       required this.shortCode,
       @TimestampConverter() required this.createdAt,
@@ -229,6 +243,8 @@ class _$ExperimentImpl implements _Experiment {
 
   @override
   final String id;
+  @override
+  final String userId;
   @override
   final String name;
   @override
@@ -250,7 +266,7 @@ class _$ExperimentImpl implements _Experiment {
 
   @override
   String toString() {
-    return 'Experiment(id: $id, name: $name, shortCode: $shortCode, createdAt: $createdAt, description: $description, activityTypeOverride: $activityTypeOverride, smartphonePositionOverride: $smartphonePositionOverride, duration: $duration, enabled: $enabled)';
+    return 'Experiment(id: $id, userId: $userId, name: $name, shortCode: $shortCode, createdAt: $createdAt, description: $description, activityTypeOverride: $activityTypeOverride, smartphonePositionOverride: $smartphonePositionOverride, duration: $duration, enabled: $enabled)';
   }
 
   @override
@@ -259,6 +275,7 @@ class _$ExperimentImpl implements _Experiment {
         (other.runtimeType == runtimeType &&
             other is _$ExperimentImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.shortCode, shortCode) ||
                 other.shortCode == shortCode) &&
@@ -282,6 +299,7 @@ class _$ExperimentImpl implements _Experiment {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      userId,
       name,
       shortCode,
       createdAt,
@@ -310,6 +328,7 @@ class _$ExperimentImpl implements _Experiment {
 abstract class _Experiment implements Experiment {
   const factory _Experiment(
       {required final String id,
+      required final String userId,
       required final String name,
       required final String shortCode,
       @TimestampConverter() required final DateTime createdAt,
@@ -324,6 +343,8 @@ abstract class _Experiment implements Experiment {
 
   @override
   String get id;
+  @override
+  String get userId;
   @override
   String get name;
   @override

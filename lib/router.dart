@@ -1,8 +1,13 @@
+import 'package:aifit_dashboard/core/ui/missing_params_screen.dart';
 import 'package:aifit_dashboard/features/auth/ui/sign_in_screen.dart';
 import 'package:aifit_dashboard/features/experiments/models/experiment.dart';
 import 'package:aifit_dashboard/features/experiments/ui/experiment_details.dart';
 import 'package:aifit_dashboard/features/experiments/ui/experiments_screen.dart';
 import 'package:aifit_dashboard/features/experiments/ui/new_experiment.dart';
+import 'package:aifit_dashboard/features/sessions/ui/players_screen.dart';
+import 'package:aifit_dashboard/features/sessions/ui/sessions_screen.dart';
+import 'package:aifit_dashboard/features/sessions/ui/session_details_screen.dart';
+import 'package:aifit_dashboard/features/sessions/ui/session_preview_screen.dart';
 import 'package:aifit_dashboard/features/tracks/ui/widgets/track_list.dart';
 import 'package:aifit_dashboard/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -25,52 +30,90 @@ final router = GoRouter(
   },
   routes: [
     GoRoute(
-      path: '/',
-      builder: (context, state) => const HomeScreen(),
-      routes: [
-        GoRoute(
-          path: 'tracks',
-          builder: (context, state) => const TrackList(),
-        ),
-        GoRoute(
-          path: 'experiments',
-          builder: (context, state) => const ExperimentsScreen(),
-          routes: [
-            GoRoute(
-              path: 'new',
+        path: '/',
+        builder: (context, state) => const HomeScreen(),
+        routes: [
+          GoRoute(
+            path: 'tracks',
+            builder: (context, state) => const TrackList(),
+          ),
+          GoRoute(
+              path: 'session/:sessionId',
               builder: (context, state) {
-                return const NewExperimentScreen();
+                final sessionId = state.pathParameters['sessionId'];
+                if (sessionId == null) {
+                  return const MissingParamsScreen(param: 'sessionId');
+                }
+                return SessionDetailsScreen(
+                  sessionId: state.pathParameters['sessionId'] ?? '',
+                );
               },
-            ),
-            GoRoute(
-                path: 'details/:experimentId',
+              routes: [
+                GoRoute(
+                    path: 'preview',
+                    builder: (context, state) {
+                      final sessionId = state.pathParameters['sessionId'];
+                      if (sessionId == null) {
+                        return const MissingParamsScreen(param: 'sessionId');
+                      }
+                      return SessionPreviewScreen(
+                        sessionId: state.pathParameters['sessionId'] ?? '',
+                      );
+                    }),
+                GoRoute(
+                    path: 'players',
+                    builder: (context, state) {
+                      final sessionId = state.pathParameters['sessionId'];
+                      if (sessionId == null) {
+                        return const MissingParamsScreen(param: 'sessionId');
+                      }
+                      return PlayerScreen(
+                        sessionId: state.pathParameters['sessionId'] ?? '',
+                      );
+                    }),
+              ]),
+          GoRoute(
+            path: 'sessions',
+            builder: (context, state) => const SessionsScreen(),
+          ),
+          GoRoute(
+            path: 'experiments',
+            builder: (context, state) => const ExperimentsScreen(),
+            routes: [
+              GoRoute(
+                path: 'new',
                 builder: (context, state) {
-                  final exId = state.pathParameters['experimentId'] as String;
-                  final ex = state.extra as Experiment?;
-                  return ExperimentDetailsScreen(
-                    experimentId: exId,
-                    experiment: ex,
-                  );
+                  return const NewExperimentScreen();
                 },
-                routes: [
-                  GoRoute(
-                      path: 'edit',
-                      builder: (context, state) {
-                        final ex = state.extra as Experiment?;
-                        return NewExperimentScreen(
-                          initialExperiment: ex,
-                          initialExperimentId: state.pathParameters['experimentId'],
-                        );
-                      }),
-                ]),
-          ],
-        ),
-      ]
-    ),
+              ),
+              GoRoute(
+                  path: 'details/:experimentId',
+                  builder: (context, state) {
+                    final exId = state.pathParameters['experimentId'] as String;
+                    final ex = state.extra as Experiment?;
+                    return ExperimentDetailsScreen(
+                      experimentId: exId,
+                      experiment: ex,
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                        path: 'edit',
+                        builder: (context, state) {
+                          final ex = state.extra as Experiment?;
+                          return NewExperimentScreen(
+                            initialExperiment: ex,
+                            initialExperimentId:
+                                state.pathParameters['experimentId'],
+                          );
+                        }),
+                  ]),
+            ],
+          ),
+        ]),
     GoRoute(
       path: '/signin',
       builder: (context, state) => const SignInScreen(),
     ),
-
   ],
 );
