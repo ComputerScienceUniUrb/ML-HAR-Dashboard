@@ -13,6 +13,7 @@ class Session with _$Session {
     required String id,
     required String userId,
     required String name,
+    String? runningId,
     String? selectedExperimentId,
     @Default([]) List<String> experiments,
     @Default(SessionStatus.opened) SessionStatus status,

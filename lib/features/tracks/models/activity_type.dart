@@ -1,5 +1,6 @@
 enum ActivityType {
-  armRotation,
+  forwardArmRotation,
+  backwardsArmRotation,
   clapHands,
   onBicycle,
   inVehicle,
@@ -18,8 +19,6 @@ enum ActivityType {
   verticalCyclette,
   run,
   runOnSpot,
-  forwardArmRotation,
-  backwardsArmRotation,
   sideOpening,
   upperArmAndTorsoStretch,
   middleSquat,
@@ -29,8 +28,10 @@ enum ActivityType {
 
   String get translate {
     return switch (this) {
-      ActivityType.armRotation => 'Rotazione delle braccia',
-      ActivityType.clapHands => 'Battito di mani',
+      ActivityType.forwardArmRotation => 'Rotazione delle braccia avanti',
+      ActivityType.backwardsArmRotation =>
+      'Rotazione delle braccia indietro',
+      ActivityType.clapHands => 'Battito di mani, in piedi',
       ActivityType.onBicycle => 'Bicicletta',
       ActivityType.inVehicle => 'Su veicolo',
       ActivityType.stand => 'Fermo in piedi',
@@ -48,12 +49,11 @@ enum ActivityType {
       ActivityType.verticalCyclette => 'Cyclette verticale',
       ActivityType.run => 'Corsa',
       ActivityType.runOnSpot => 'Corsa sul posto',
-      ActivityType.forwardArmRotation => 'Rotazione delle braccia avanti',
-      ActivityType.backwardsArmRotation => 'Rotazione delle braccia indietro',
       ActivityType.sideOpening => 'Apertura laterale',
       ActivityType.upperArmAndTorsoStretch =>
-        'Allungamento torso e braccio alto',
+      'Allungamento torso e braccio alto',
       ActivityType.middleSquat => 'Mezzi squat sul posto',
+      ActivityType.standingLunges => 'Affondi da fermo',
       ActivityType.standingLunges => 'Affondi da fermo',
       ActivityType.heelLift => 'Sollevamento talloni',
       ActivityType.torsoTorsion => 'Torsione del busto',

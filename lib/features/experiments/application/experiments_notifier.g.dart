@@ -6,7 +6,7 @@ part of 'experiments_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$listenExperimentsHash() => r'6612dd61920cb55a12fce575505c7e68d1783c1a';
+String _$listenExperimentsHash() => r'4f2f1d30f8d51d48a38d399b5a587100b8eedb6f';
 
 /// See also [listenExperiments].
 @ProviderFor(listenExperiments)

@@ -1,11 +1,14 @@
+import 'package:aifit_dashboard/core/utils.dart';
 import 'package:aifit_dashboard/features/experiments/application/experiments_notifier.dart';
 import 'package:aifit_dashboard/features/experiments/models/experiment.dart';
 import 'package:aifit_dashboard/features/tracks/ui/widgets/experiment_track_list.dart';
 import 'package:aifit_dashboard/features/tracks/ui/widgets/track_list.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ExperimentDetailsScreen extends ConsumerWidget {
   final String experimentId;
@@ -43,7 +46,7 @@ class ExperimentDetailsScreen extends ConsumerWidget {
       ),
       _DetailWidget(
         label: 'Creato il',
-        text: dateFormat.format(experiment.createdAt),
+        text: genericDateFormatter.format(experiment.createdAt),
       ),
       _DetailWidget(
         label: 'Codice',
@@ -81,7 +84,7 @@ class ExperimentDetailsScreen extends ConsumerWidget {
                     height: 300,
                     child: Center(
                       child: QrImageView(
-                        data: buildUrl(experiment?.id ?? ''),
+                        data: buildUrl(experimentId),
                         size: 250,
                       ),
                     ),
@@ -122,7 +125,7 @@ class ExperimentDetailsScreen extends ConsumerWidget {
                           color: Colors.white,
                           padding: const EdgeInsets.all(16),
                           child: QrImageView(
-                            data: buildUrl(experiment!.shortCode),
+                            data: buildUrl(experiment!.id),
                             version: QrVersions.auto,
                             size: constraints.maxWidth * 0.25,
                           ),
@@ -133,18 +136,43 @@ class ExperimentDetailsScreen extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  try {
+                    final result = await FirebaseFunctions.instanceFor(
+                            region: 'europe-west3')
+                        .httpsCallable('createZipAndUpload')
+                        .call({});
+
+                    final output = Map.from(result.data);
+                    final url = output['downloadUrl'];
+                    print(url);
+                    final uri = Uri.parse(url);
+                    if (await canLaunchUrl(uri)) {
+                      launchUrl(uri);
+                    }
+                  } on FirebaseFunctionsException catch (error) {
+                    print(error.code);
+                    print(error.details);
+                    print(error.message);
+                    rethrow;
+                  } catch (ex) {
+                    rethrow;
+                  }
+                },
+                child: const Text('Scarica tutte le tracce'),
+              ),
+              const SizedBox(height: 16),
               SizedBox(
                 height: 600,
                 child: ExperimentTrackList(
-                  experimentCode: experiment!.shortCode,
+                  experimentId: experiment!.id,
                 ),
               ),
             ],
           );
         },
       ),
-
-
     );
   }
 

@@ -28,19 +28,9 @@ class _CreateSessionFormState extends ConsumerState<CreateSessionForm> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
-      // Qui dovresti chiamare il metodo del tuo notifier per creare la sessione.
-      // Ad esempio, se hai un SessionsNotifier con un metodo addSession:
-      // final sessionsNotifier = ref.read(sessionsNotifierProvider.notifier);
-      // await sessionsNotifier.addSession(name: _sessionName, activityType: _selectedStatus);
-
-      // Per questo esempio, creo un oggetto Session e lo passo al callback
-      // (se fornito) e/o stampo i dati.
-      // L'ID e createdAt verrebbero gestiti dal backend o dal notifier.
-
       final userId = FirebaseAuth.instance.currentUser?.uid;
 
       if (userId == null) {
-        // Mostra un messaggio di successo (opzionale)
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Utente non autenticato.')));
 

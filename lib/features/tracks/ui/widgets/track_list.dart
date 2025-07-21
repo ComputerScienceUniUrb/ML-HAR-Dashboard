@@ -1,3 +1,4 @@
+import 'package:aifit_dashboard/core/utils.dart';
 import 'package:aifit_dashboard/features/tracks/application/tracks_notifier.dart';
 import 'package:aifit_dashboard/features/tracks/models/track.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,12 @@ class _TrackGridState extends State<TrackGrid> {
   @override
   void initState() {
     super.initState();
+    init();
+  }
 
+  init() {
+    rows.clear();
+    columns.clear();
     for (final t in widget.tracks) {
       rows.add(PlutoRow(cells: t.toCell()));
     }
@@ -177,6 +183,15 @@ class _TrackGridState extends State<TrackGrid> {
   }
 
   @override
+  void didUpdateWidget(covariant TrackGrid oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.tracks != widget.tracks) {
+      init();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return PlutoGrid(
       columns: columns,
@@ -186,31 +201,7 @@ class _TrackGridState extends State<TrackGrid> {
   }
 }
 
-final dateFormat = DateFormat('dd MMMM yyyy - HH:mm');
-
-/*class _TrackTile extends StatelessWidget {
-  final Track track;
-
-  const _TrackTile({required this.track});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Text(
-              dateFormat.format(track.timestamp),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}*/
-
-class _UserColumnMenu implements PlutoColumnMenuDelegate<_UserColumnMenuItem> {
+/*class _UserColumnMenu implements PlutoColumnMenuDelegate<_UserColumnMenuItem> {
   @override
   List<PopupMenuEntry<_UserColumnMenuItem>> buildMenuItems({
     required PlutoGridStateManager stateManager,
@@ -263,7 +254,7 @@ class _UserColumnMenu implements PlutoColumnMenuDelegate<_UserColumnMenuItem> {
         break;
     }
   }
-}
+}*/
 
 enum _UserColumnMenuItem {
   moveNext,
@@ -274,7 +265,7 @@ extension TrackRow on Track {
   toCell() {
     return {
       'download_url': PlutoCell(value: downloadUrl),
-      'date': PlutoCell(value: dateFormat.format(timestamp)),
+      'date': PlutoCell(value: genericDateFormatter.format(timestamp)),
       'battery': PlutoCell(value: startBatteryLevel),
       'code': PlutoCell(value: experimentCode ?? '-'),
       'battery_save_mode': PlutoCell(value: isInBatterySaveMode),

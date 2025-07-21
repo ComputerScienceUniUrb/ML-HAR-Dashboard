@@ -11,6 +11,7 @@ _$SessionImpl _$$SessionImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       userId: json['userId'] as String,
       name: json['name'] as String,
+      runningId: json['runningId'] as String?,
       selectedExperimentId: json['selectedExperimentId'] as String?,
       experiments: (json['experiments'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$SessionImplToJson(_$SessionImpl instance) =>
       'id': instance.id,
       'userId': instance.userId,
       'name': instance.name,
+      'runningId': instance.runningId,
       'selectedExperimentId': instance.selectedExperimentId,
       'experiments': instance.experiments,
       'status': _$SessionStatusEnumMap[instance.status]!,

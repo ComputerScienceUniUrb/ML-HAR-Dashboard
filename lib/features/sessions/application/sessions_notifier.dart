@@ -2,6 +2,7 @@ import 'package:aifit_dashboard/features/sessions/models/session.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:collection/collection.dart';
 
 part 'sessions_notifier.g.dart';
 
@@ -14,7 +15,17 @@ Stream<List<Session>> getSessions(Ref ref) async* {
   await for (final s in stream) {
     final docs = s.docs;
     try {
-      yield docs.map((d) => Session.fromJson(d.data())).toList();
+      final list = docs.map((d) {
+        try {
+          final s = Session.fromJson(d.data());
+          return s;
+        } catch (ex, st) {
+          print(ex);
+          print(st);
+          return null;
+        }
+      });
+      yield list.nonNulls.toList();
     } catch (ex, st) {
       print(ex);
       print(st);
@@ -38,3 +49,4 @@ Stream<Session> getSessionsById(Ref ref, String sessionId) async* {
     }
   }
 }
+

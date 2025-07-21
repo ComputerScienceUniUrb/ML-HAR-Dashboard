@@ -14,7 +14,17 @@ Stream<List<Track>> getTracks(Ref ref) async* {
   await for (final s in stream) {
     final docs = s.docs;
     try {
-      yield docs.map((d) => Track.fromJson(d.data())).toList();
+      final list = docs.map((d) {
+        try {
+          final s = Track.fromJson(d.data());
+          return s;
+        } catch (ex, st) {
+          print(ex);
+          print(st);
+          return null;
+        }
+      });
+      yield list.nonNulls.toList();
     } catch (ex, st) {
       print(ex);
       print(st);
@@ -23,15 +33,53 @@ Stream<List<Track>> getTracks(Ref ref) async* {
 }
 
 @riverpod
-Stream<List<Track>> getTracksByExperimentCode(Ref ref, String code) async* {
+Stream<List<Track>> getTracksByExperimentId(
+    Ref ref, String experimentId) async* {
   final ref = FirebaseFirestore.instance
       .collection('tracks')
-      .where('experimentCode', isEqualTo: code);
+      .where('experimentId', isEqualTo: experimentId);
   final stream = ref.snapshots();
   await for (final s in stream) {
     final docs = s.docs;
     try {
-      yield docs.map((d) => Track.fromJson(d.data())).toList();
+      final list = docs.map((d) {
+        try {
+          final s = Track.fromJson(d.data());
+          return s;
+        } catch (ex, st) {
+          print(ex);
+          print(st);
+          return null;
+        }
+      });
+      yield list.nonNulls.toList();
+    } catch (ex, st) {
+      print(ex);
+      print(st);
+    }
+  }
+}
+
+@riverpod
+Stream<List<Track>> getTracksBySessionId(Ref ref, String sessionId) async* {
+  final ref = FirebaseFirestore.instance
+      .collection('tracks')
+      .where('sessionId', isEqualTo: sessionId);
+  final stream = ref.snapshots();
+  await for (final s in stream) {
+    final docs = s.docs;
+    try {
+      final list = docs.map((d) {
+        try {
+          final s = Track.fromJson(d.data());
+          return s;
+        } catch (ex, st) {
+          print(ex);
+          print(st);
+          return null;
+        }
+      });
+      yield list.nonNulls.toList();
     } catch (ex, st) {
       print(ex);
       print(st);

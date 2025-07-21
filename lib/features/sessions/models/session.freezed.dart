@@ -23,6 +23,7 @@ mixin _$Session {
   String get id => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String? get runningId => throw _privateConstructorUsedError;
   String? get selectedExperimentId => throw _privateConstructorUsedError;
   List<String> get experiments => throw _privateConstructorUsedError;
   SessionStatus get status => throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $SessionCopyWith<$Res> {
       {String id,
       String userId,
       String name,
+      String? runningId,
       String? selectedExperimentId,
       List<String> experiments,
       SessionStatus status,
@@ -71,6 +73,7 @@ class _$SessionCopyWithImpl<$Res, $Val extends Session>
     Object? id = null,
     Object? userId = null,
     Object? name = null,
+    Object? runningId = freezed,
     Object? selectedExperimentId = freezed,
     Object? experiments = null,
     Object? status = null,
@@ -89,6 +92,10 @@ class _$SessionCopyWithImpl<$Res, $Val extends Session>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      runningId: freezed == runningId
+          ? _value.runningId
+          : runningId // ignore: cast_nullable_to_non_nullable
+              as String?,
       selectedExperimentId: freezed == selectedExperimentId
           ? _value.selectedExperimentId
           : selectedExperimentId // ignore: cast_nullable_to_non_nullable
@@ -120,6 +127,7 @@ abstract class _$$SessionImplCopyWith<$Res> implements $SessionCopyWith<$Res> {
       {String id,
       String userId,
       String name,
+      String? runningId,
       String? selectedExperimentId,
       List<String> experiments,
       SessionStatus status,
@@ -142,6 +150,7 @@ class __$$SessionImplCopyWithImpl<$Res>
     Object? id = null,
     Object? userId = null,
     Object? name = null,
+    Object? runningId = freezed,
     Object? selectedExperimentId = freezed,
     Object? experiments = null,
     Object? status = null,
@@ -160,6 +169,10 @@ class __$$SessionImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      runningId: freezed == runningId
+          ? _value.runningId
+          : runningId // ignore: cast_nullable_to_non_nullable
+              as String?,
       selectedExperimentId: freezed == selectedExperimentId
           ? _value.selectedExperimentId
           : selectedExperimentId // ignore: cast_nullable_to_non_nullable
@@ -187,6 +200,7 @@ class _$SessionImpl implements _Session {
       {required this.id,
       required this.userId,
       required this.name,
+      this.runningId,
       this.selectedExperimentId,
       final List<String> experiments = const [],
       this.status = SessionStatus.opened,
@@ -202,6 +216,8 @@ class _$SessionImpl implements _Session {
   final String userId;
   @override
   final String name;
+  @override
+  final String? runningId;
   @override
   final String? selectedExperimentId;
   final List<String> _experiments;
@@ -222,7 +238,7 @@ class _$SessionImpl implements _Session {
 
   @override
   String toString() {
-    return 'Session(id: $id, userId: $userId, name: $name, selectedExperimentId: $selectedExperimentId, experiments: $experiments, status: $status, createdAt: $createdAt)';
+    return 'Session(id: $id, userId: $userId, name: $name, runningId: $runningId, selectedExperimentId: $selectedExperimentId, experiments: $experiments, status: $status, createdAt: $createdAt)';
   }
 
   @override
@@ -233,6 +249,8 @@ class _$SessionImpl implements _Session {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.runningId, runningId) ||
+                other.runningId == runningId) &&
             (identical(other.selectedExperimentId, selectedExperimentId) ||
                 other.selectedExperimentId == selectedExperimentId) &&
             const DeepCollectionEquality()
@@ -249,6 +267,7 @@ class _$SessionImpl implements _Session {
       id,
       userId,
       name,
+      runningId,
       selectedExperimentId,
       const DeepCollectionEquality().hash(_experiments),
       status,
@@ -275,6 +294,7 @@ abstract class _Session implements Session {
       {required final String id,
       required final String userId,
       required final String name,
+      final String? runningId,
       final String? selectedExperimentId,
       final List<String> experiments,
       final SessionStatus status,
@@ -288,6 +308,8 @@ abstract class _Session implements Session {
   String get userId;
   @override
   String get name;
+  @override
+  String? get runningId;
   @override
   String? get selectedExperimentId;
   @override

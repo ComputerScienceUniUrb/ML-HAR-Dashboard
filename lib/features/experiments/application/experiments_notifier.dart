@@ -12,7 +12,17 @@ Stream<List<Experiment>> listenExperiments(Ref ref) async* {
   await for (final s in stream) {
     final docs = s.docs;
     try {
-      yield docs.map((d) => Experiment.fromJson(d.data())).toList();
+      final list = docs.map((d) {
+        try {
+          final s = Experiment.fromJson(d.data());
+          return s;
+        } catch (ex, st) {
+          print(ex);
+          print(st);
+          return null;
+        }
+      });
+      yield list.nonNulls.toList();
     } catch (ex, st) {
       print(ex);
       print(st);

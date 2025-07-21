@@ -38,43 +38,45 @@ final router = GoRouter(
             builder: (context, state) => const TrackList(),
           ),
           GoRoute(
-              path: 'session/:sessionId',
-              builder: (context, state) {
-                final sessionId = state.pathParameters['sessionId'];
-                if (sessionId == null) {
-                  return const MissingParamsScreen(param: 'sessionId');
-                }
-                return SessionDetailsScreen(
-                  sessionId: state.pathParameters['sessionId'] ?? '',
-                );
-              },
-              routes: [
-                GoRoute(
-                    path: 'preview',
-                    builder: (context, state) {
-                      final sessionId = state.pathParameters['sessionId'];
-                      if (sessionId == null) {
-                        return const MissingParamsScreen(param: 'sessionId');
-                      }
-                      return SessionPreviewScreen(
-                        sessionId: state.pathParameters['sessionId'] ?? '',
-                      );
-                    }),
-                GoRoute(
-                    path: 'players',
-                    builder: (context, state) {
-                      final sessionId = state.pathParameters['sessionId'];
-                      if (sessionId == null) {
-                        return const MissingParamsScreen(param: 'sessionId');
-                      }
-                      return PlayerScreen(
-                        sessionId: state.pathParameters['sessionId'] ?? '',
-                      );
-                    }),
-              ]),
-          GoRoute(
             path: 'sessions',
             builder: (context, state) => const SessionsScreen(),
+            routes:[
+              GoRoute(
+                  path: ':sessionId',
+                  builder: (context, state) {
+                    final sessionId = state.pathParameters['sessionId'];
+                    if (sessionId == null) {
+                      return const MissingParamsScreen(param: 'sessionId');
+                    }
+                    return SessionDetailsScreen(
+                      sessionId: state.pathParameters['sessionId'] ?? '',
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                        path: 'preview',
+                        builder: (context, state) {
+                          final sessionId = state.pathParameters['sessionId'];
+                          if (sessionId == null) {
+                            return const MissingParamsScreen(param: 'sessionId');
+                          }
+                          return SessionPreviewScreen(
+                            sessionId: state.pathParameters['sessionId'] ?? '',
+                          );
+                        }),
+                    GoRoute(
+                        path: 'players',
+                        builder: (context, state) {
+                          final sessionId = state.pathParameters['sessionId'];
+                          if (sessionId == null) {
+                            return const MissingParamsScreen(param: 'sessionId');
+                          }
+                          return PlayerScreen(
+                            sessionId: state.pathParameters['sessionId'] ?? '',
+                          );
+                        }),
+                  ]),
+            ]
           ),
           GoRoute(
             path: 'experiments',

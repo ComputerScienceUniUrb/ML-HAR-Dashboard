@@ -8,6 +8,7 @@ import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
@@ -64,6 +65,8 @@ class NewExperimentScreen extends HookConsumerWidget {
         useState<ActivityType?>(experiment?.activityTypeOverride);
     final smartphonePositionOverride =
         useState<SmartphonePosition?>(experiment?.smartphonePositionOverride);
+    final durationController =
+        useTextEditingController(text: experiment?.duration?.toString());
     final isLoading = useState(false);
 
     return Scaffold(
@@ -85,6 +88,7 @@ class NewExperimentScreen extends HookConsumerWidget {
 
                     SmartDialog.showLoading();
                     try {
+                      final duration = int.tryParse(durationController.text);
                       isLoading.value = true;
                       final data = Experiment(
                         userId: userId,
@@ -97,6 +101,7 @@ class NewExperimentScreen extends HookConsumerWidget {
                         activityTypeOverride: activityTypeOverride.value,
                         smartphonePositionOverride:
                             smartphonePositionOverride.value,
+                        duration: duration,
                       );
                       await FirebaseFirestore.instance
                           .collection('experiments')
@@ -227,6 +232,33 @@ class NewExperimentScreen extends HookConsumerWidget {
           const SizedBox(height: 8),
           Row(
             children: [
+              for (final d in durations)
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: FilterChip(
+                    selected: int.tryParse(durationController.text) == d,
+                    label: Text('$d sec'),
+                    onSelected: (bool value) {
+                      durationController.text = d.toString();
+                    },
+                  ),
+                ),
+              Expanded(
+                child: MyTextField(
+                  controller: durationController,
+                  maxLines: 1,
+                  suffix: 'secondi',
+                  hint: 'Durata in secondi',
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
               const Text('Abilitato?'),
               Switch(
                   value: enabled.value,
@@ -240,3 +272,5 @@ class NewExperimentScreen extends HookConsumerWidget {
     );
   }
 }
+
+final durations = [5, 10, 15, 20, 30];

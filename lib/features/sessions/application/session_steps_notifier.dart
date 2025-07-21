@@ -24,3 +24,11 @@ Stream<List<SessionStep>> getSessionSteps(Ref ref, String sessionId) async* {
     }
   }
 }
+
+@riverpod
+Stream<List<SessionStep>> getExperimentSteps(Ref ref, String sessionId) async* {
+  final steps = ref.watch(getSessionStepsProvider(sessionId)).valueOrNull ?? [];
+  yield steps
+      .where((step) => step.action == SessionStepAction.startExperiment)
+      .toList();
+}

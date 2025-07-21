@@ -17,7 +17,9 @@ Stream<List<Player>> getPlayers(Ref ref, String sessionId) async* {
   await for (final s in stream) {
     final docs = s.docs;
     try {
-      yield docs.map((d) => Player.fromJson(d.data())).toList();
+      final output= docs.map((d) => Player.fromJson(d.data())).toList();
+      output.sort((a,b)=>a.id.compareTo(b.id));
+      yield output;
     } catch (ex, st) {
       print(ex);
       print(st);

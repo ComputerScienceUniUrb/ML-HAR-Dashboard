@@ -37,7 +37,7 @@ class SessionsScreen extends ConsumerWidget {
                 // subtitle: Text('Dettagli sessione...'),
                 onTap: () {
 
-                  context.go('/session/${session.id}');
+                  context.go('/sessions/${session.id}');
                 },
               );
             },

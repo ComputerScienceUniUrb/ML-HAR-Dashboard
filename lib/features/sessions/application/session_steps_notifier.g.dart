@@ -158,5 +158,138 @@ class _GetSessionStepsProviderElement
   @override
   String get sessionId => (origin as GetSessionStepsProvider).sessionId;
 }
+
+String _$getExperimentStepsHash() =>
+    r'bfc0d1b2307629fec9c5705af93f33e43b0d3032';
+
+/// See also [getExperimentSteps].
+@ProviderFor(getExperimentSteps)
+const getExperimentStepsProvider = GetExperimentStepsFamily();
+
+/// See also [getExperimentSteps].
+class GetExperimentStepsFamily extends Family<AsyncValue<List<SessionStep>>> {
+  /// See also [getExperimentSteps].
+  const GetExperimentStepsFamily();
+
+  /// See also [getExperimentSteps].
+  GetExperimentStepsProvider call(
+    String sessionId,
+  ) {
+    return GetExperimentStepsProvider(
+      sessionId,
+    );
+  }
+
+  @override
+  GetExperimentStepsProvider getProviderOverride(
+    covariant GetExperimentStepsProvider provider,
+  ) {
+    return call(
+      provider.sessionId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getExperimentStepsProvider';
+}
+
+/// See also [getExperimentSteps].
+class GetExperimentStepsProvider
+    extends AutoDisposeStreamProvider<List<SessionStep>> {
+  /// See also [getExperimentSteps].
+  GetExperimentStepsProvider(
+    String sessionId,
+  ) : this._internal(
+          (ref) => getExperimentSteps(
+            ref as GetExperimentStepsRef,
+            sessionId,
+          ),
+          from: getExperimentStepsProvider,
+          name: r'getExperimentStepsProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getExperimentStepsHash,
+          dependencies: GetExperimentStepsFamily._dependencies,
+          allTransitiveDependencies:
+              GetExperimentStepsFamily._allTransitiveDependencies,
+          sessionId: sessionId,
+        );
+
+  GetExperimentStepsProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.sessionId,
+  }) : super.internal();
+
+  final String sessionId;
+
+  @override
+  Override overrideWith(
+    Stream<List<SessionStep>> Function(GetExperimentStepsRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetExperimentStepsProvider._internal(
+        (ref) => create(ref as GetExperimentStepsRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        sessionId: sessionId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeStreamProviderElement<List<SessionStep>> createElement() {
+    return _GetExperimentStepsProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetExperimentStepsProvider && other.sessionId == sessionId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, sessionId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+mixin GetExperimentStepsRef on AutoDisposeStreamProviderRef<List<SessionStep>> {
+  /// The parameter `sessionId` of this provider.
+  String get sessionId;
+}
+
+class _GetExperimentStepsProviderElement
+    extends AutoDisposeStreamProviderElement<List<SessionStep>>
+    with GetExperimentStepsRef {
+  _GetExperimentStepsProviderElement(super.provider);
+
+  @override
+  String get sessionId => (origin as GetExperimentStepsProvider).sessionId;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
