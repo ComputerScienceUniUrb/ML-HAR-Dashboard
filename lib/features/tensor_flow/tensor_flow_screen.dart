@@ -98,6 +98,7 @@ class _UploadModelDialogState extends ConsumerState<UploadModelDialog> {
   final _formKey = GlobalKey<FormState>();
 
   Uint8List? model;
+  String? fileName;
   bool isUploading = false;
 
   @override
@@ -137,25 +138,30 @@ class _UploadModelDialogState extends ConsumerState<UploadModelDialog> {
                   : Stack(
                       children: [
                         DropZoneView(
-                          onDataLoaded: (data) {
+                          onDataLoaded: (data, fileName) {
                             setState(() {
                               model = data;
+                              this.fileName = fileName;
                             });
                           },
                         ),
                       ],
                     ),
             ),
+            if (fileName != null) Text(fileName ?? ''),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: model != null && !isUploading
+              onPressed: model != null && fileName != null && !isUploading
                   ? () async {
                       try {
+                        final name = fileName;
+
+                        if (name == null) return;
                         setState(() {
                           isUploading = true;
                         });
                         final uploadTask = await FirebaseStorage.instance
-                            .ref('tf_models/${getFileName(newVersion)}')
+                            .ref('tf_models/$fileName')
                             .putData(model!);
 
                         final downloadUrl =
@@ -166,8 +172,9 @@ class _UploadModelDialogState extends ConsumerState<UploadModelDialog> {
                           url: downloadUrl,
                           enabled: true,
                           version: newVersion,
-                          note: _noteController.text.trim(),
+                          notes: _noteController.text.trim(),
                           addedOn: DateTime.now(),
+                          fileName: name,
                         );
 
                         await FirestoreReference.tensorFlowModelDoc(m.id)
@@ -194,7 +201,7 @@ class _UploadModelDialogState extends ConsumerState<UploadModelDialog> {
 }
 
 class DropZoneView extends StatefulWidget {
-  final Function(Uint8List) onDataLoaded;
+  final Function(Uint8List, String) onDataLoaded;
 
   const DropZoneView({
     super.key,
@@ -263,7 +270,7 @@ class _DropZoneViewState extends State<DropZoneView> {
               data = bytes;
               highlighted1 = false;
             });
-            widget.onDataLoaded(bytes);
+            widget.onDataLoaded(bytes, file.name);
           },
           onDropInvalid: (mime) => print('Zone 1 invalid MIME: $mime'),
           onDropFiles: (files) => print('Zone 1 drop multiple: $files'),
@@ -271,8 +278,4 @@ class _DropZoneViewState extends State<DropZoneView> {
       ],
     );
   }
-}
-
-String getFileName(int version) {
-  return 'tf_model_$version.tflite';
 }

@@ -10,9 +10,12 @@ class TensorFlowModel extends Equatable {
   final String url;
   final bool enabled;
   final int version;
-  final String? note;
+  final String? notes;
+  final String fileName;
   @TimestampConverter()
-  final DateTime addedOn;
+  final DateTime? addedOn;
+  @TimestampConverter()
+  final DateTime? trainedOn;
 
   const TensorFlowModel({
     required this.id,
@@ -20,7 +23,9 @@ class TensorFlowModel extends Equatable {
     required this.enabled,
     required this.version,
     required this.addedOn,
-    this.note,
+    required this.fileName,
+    this.trainedOn,
+    this.notes,
   });
 
   factory TensorFlowModel.fromJson(Map<String, dynamic> json) =>
@@ -35,6 +40,6 @@ class TensorFlowModel extends Equatable {
         enabled,
         version,
         addedOn,
-        note,
+        notes,
       ];
 }

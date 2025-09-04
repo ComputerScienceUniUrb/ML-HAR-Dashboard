@@ -1,13 +1,9 @@
-import 'package:aifit_dashboard/core/data/firestore_references.dart';
 import 'package:aifit_dashboard/core/utils.dart';
 import 'package:aifit_dashboard/features/tracks/application/tracks_notifier.dart';
 import 'package:aifit_dashboard/features/tracks/models/inference_output.dart';
 import 'package:aifit_dashboard/features/tracks/models/track.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:pluto_grid_plus/pluto_grid_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -92,8 +88,8 @@ class _TrackGridState extends State<TrackGrid> {
             return ElevatedButton(
               onPressed: enabled
                   ? () async {
-                final windowSize = 200;
-                final allOutputs = rendererContext
+                      final windowSize = 200;
+                      final allOutputs = rendererContext
                           .row.cells[rendererContext.column.field]?.value;
                       showDialog(
                         context: context,
@@ -132,7 +128,8 @@ class _TrackGridState extends State<TrackGrid> {
                                       child: ListView.builder(
                                         itemCount: allOutputs.length,
                                         itemBuilder: (context, index) {
-                                          final output = allOutputs[index] as InferenceOutput;
+                                          final output = allOutputs[index]
+                                              as InferenceOutput;
                                           final startIndex = index * windowSize;
                                           final endIndex =
                                               startIndex + windowSize - 1;

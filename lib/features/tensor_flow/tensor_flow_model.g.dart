@@ -13,7 +13,9 @@ TensorFlowModel _$TensorFlowModelFromJson(Map<String, dynamic> json) =>
       enabled: json['enabled'] as bool,
       version: (json['version'] as num).toInt(),
       addedOn: const TimestampConverter().fromJson(json['addedOn']),
-      note: json['note'] as String?,
+      fileName: json['fileName'] as String,
+      trainedOn: const TimestampConverter().fromJson(json['trainedOn']),
+      notes: json['notes'] as String?,
     );
 
 Map<String, dynamic> _$TensorFlowModelToJson(TensorFlowModel instance) =>
@@ -22,6 +24,16 @@ Map<String, dynamic> _$TensorFlowModelToJson(TensorFlowModel instance) =>
       'url': instance.url,
       'enabled': instance.enabled,
       'version': instance.version,
-      'note': instance.note,
-      'addedOn': const TimestampConverter().toJson(instance.addedOn),
+      'notes': instance.notes,
+      'fileName': instance.fileName,
+      'addedOn': _$JsonConverterToJson<dynamic, DateTime>(
+          instance.addedOn, const TimestampConverter().toJson),
+      'trainedOn': _$JsonConverterToJson<dynamic, DateTime>(
+          instance.trainedOn, const TimestampConverter().toJson),
     };
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);
