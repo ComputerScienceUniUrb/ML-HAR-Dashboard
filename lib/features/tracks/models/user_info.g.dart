@@ -6,8 +6,7 @@ part of 'user_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserInfoImpl _$$UserInfoImplFromJson(Map<String, dynamic> json) =>
-    _$UserInfoImpl(
+_UserInfo _$UserInfoFromJson(Map<String, dynamic> json) => _UserInfo(
       age: (json['age'] as num?)?.toInt() ?? 0,
       weight: (json['weight'] as num?)?.toDouble() ?? 0.0,
       gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']) ??
@@ -15,8 +14,7 @@ _$UserInfoImpl _$$UserInfoImplFromJson(Map<String, dynamic> json) =>
       height: (json['height'] as num?)?.toInt() ?? 0,
     );
 
-Map<String, dynamic> _$$UserInfoImplToJson(_$UserInfoImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$UserInfoToJson(_UserInfo instance) => <String, dynamic>{
       'age': instance.age,
       'weight': instance.weight,
       'gender': _$GenderEnumMap[instance.gender]!,

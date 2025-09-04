@@ -8,7 +8,7 @@ part 'session.g.dart';
 enum SessionStatus { draft, opened, live, closed }
 
 @freezed
-class Session with _$Session {
+abstract class Session with _$Session {
   const factory Session({
     required String id,
     required String userId,

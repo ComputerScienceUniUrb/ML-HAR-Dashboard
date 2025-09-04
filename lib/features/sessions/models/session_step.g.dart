@@ -6,8 +6,7 @@ part of 'session_step.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SessionStepImpl _$$SessionStepImplFromJson(Map<String, dynamic> json) =>
-    _$SessionStepImpl(
+_SessionStep _$SessionStepFromJson(Map<String, dynamic> json) => _SessionStep(
       id: json['id'] as String,
       action: $enumDecode(_$SessionStepActionEnumMap, json['action']),
       currentStatus: $enumDecode(_$SessionStatusEnumMap, json['currentStatus']),
@@ -16,7 +15,7 @@ _$SessionStepImpl _$$SessionStepImplFromJson(Map<String, dynamic> json) =>
       runningId: json['runningId'] as String?,
     );
 
-Map<String, dynamic> _$$SessionStepImplToJson(_$SessionStepImpl instance) =>
+Map<String, dynamic> _$SessionStepToJson(_SessionStep instance) =>
     <String, dynamic>{
       'id': instance.id,
       'action': _$SessionStepActionEnumMap[instance.action]!,

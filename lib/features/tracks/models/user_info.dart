@@ -6,7 +6,7 @@ part 'user_info.freezed.dart';
 part 'user_info.g.dart';
 
 @freezed
-class UserInfo with _$UserInfo {
+abstract class UserInfo with _$UserInfo {
   const factory UserInfo({
     @Default(0) int age,
     @Default(0.0) double weight,

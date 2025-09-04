@@ -10,7 +10,7 @@ part 'experiment.freezed.dart';
 part 'experiment.g.dart';
 
 @freezed
-class Experiment with _$Experiment {
+abstract class Experiment with _$Experiment {
   const factory Experiment({
     required String id,
     required String userId,

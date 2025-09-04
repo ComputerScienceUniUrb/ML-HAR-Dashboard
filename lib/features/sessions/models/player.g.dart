@@ -6,7 +6,7 @@ part of 'player.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PlayerImpl _$$PlayerImplFromJson(Map<String, dynamic> json) => _$PlayerImpl(
+_Player _$PlayerFromJson(Map<String, dynamic> json) => _Player(
       id: json['id'] as String,
       name: json['name'] as String? ?? 'Sconosciuto',
       age: (json['age'] as num?)?.toInt(),
@@ -20,8 +20,7 @@ _$PlayerImpl _$$PlayerImplFromJson(Map<String, dynamic> json) => _$PlayerImpl(
           const [],
     );
 
-Map<String, dynamic> _$$PlayerImplToJson(_$PlayerImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$PlayerToJson(_Player instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'age': instance.age,

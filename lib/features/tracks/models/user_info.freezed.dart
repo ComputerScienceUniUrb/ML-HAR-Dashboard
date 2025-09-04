@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,99 +9,61 @@ part of 'user_info.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-UserInfo _$UserInfoFromJson(Map<String, dynamic> json) {
-  return _UserInfo.fromJson(json);
-}
 
 /// @nodoc
 mixin _$UserInfo {
-  int get age => throw _privateConstructorUsedError;
-  double get weight => throw _privateConstructorUsedError;
-  Gender get gender => throw _privateConstructorUsedError;
-  int get height => throw _privateConstructorUsedError;
-
-  /// Serializes this UserInfo to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  int get age;
+  double get weight;
+  Gender get gender;
+  int get height;
 
   /// Create a copy of UserInfo
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $UserInfoCopyWith<UserInfo> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UserInfoCopyWith<$Res> {
-  factory $UserInfoCopyWith(UserInfo value, $Res Function(UserInfo) then) =
-      _$UserInfoCopyWithImpl<$Res, UserInfo>;
-  @useResult
-  $Res call({int age, double weight, Gender gender, int height});
-}
-
-/// @nodoc
-class _$UserInfoCopyWithImpl<$Res, $Val extends UserInfo>
-    implements $UserInfoCopyWith<$Res> {
-  _$UserInfoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of UserInfo
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $UserInfoCopyWith<UserInfo> get copyWith =>
+      _$UserInfoCopyWithImpl<UserInfo>(this as UserInfo, _$identity);
+
+  /// Serializes this UserInfo to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? age = null,
-    Object? weight = null,
-    Object? gender = null,
-    Object? height = null,
-  }) {
-    return _then(_value.copyWith(
-      age: null == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int,
-      weight: null == weight
-          ? _value.weight
-          : weight // ignore: cast_nullable_to_non_nullable
-              as double,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as Gender,
-      height: null == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UserInfo &&
+            (identical(other.age, age) || other.age == age) &&
+            (identical(other.weight, weight) || other.weight == weight) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.height, height) || other.height == height));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, age, weight, gender, height);
+
+  @override
+  String toString() {
+    return 'UserInfo(age: $age, weight: $weight, gender: $gender, height: $height)';
   }
 }
 
 /// @nodoc
-abstract class _$$UserInfoImplCopyWith<$Res>
-    implements $UserInfoCopyWith<$Res> {
-  factory _$$UserInfoImplCopyWith(
-          _$UserInfoImpl value, $Res Function(_$UserInfoImpl) then) =
-      __$$UserInfoImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $UserInfoCopyWith<$Res> {
+  factory $UserInfoCopyWith(UserInfo value, $Res Function(UserInfo) _then) =
+      _$UserInfoCopyWithImpl;
   @useResult
   $Res call({int age, double weight, Gender gender, int height});
 }
 
 /// @nodoc
-class __$$UserInfoImplCopyWithImpl<$Res>
-    extends _$UserInfoCopyWithImpl<$Res, _$UserInfoImpl>
-    implements _$$UserInfoImplCopyWith<$Res> {
-  __$$UserInfoImplCopyWithImpl(
-      _$UserInfoImpl _value, $Res Function(_$UserInfoImpl) _then)
-      : super(_value, _then);
+class _$UserInfoCopyWithImpl<$Res> implements $UserInfoCopyWith<$Res> {
+  _$UserInfoCopyWithImpl(this._self, this._then);
+
+  final UserInfo _self;
+  final $Res Function(UserInfo) _then;
 
   /// Create a copy of UserInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -113,38 +75,197 @@ class __$$UserInfoImplCopyWithImpl<$Res>
     Object? gender = null,
     Object? height = null,
   }) {
-    return _then(_$UserInfoImpl(
+    return _then(_self.copyWith(
       age: null == age
-          ? _value.age
+          ? _self.age
           : age // ignore: cast_nullable_to_non_nullable
               as int,
       weight: null == weight
-          ? _value.weight
+          ? _self.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as double,
       gender: null == gender
-          ? _value.gender
+          ? _self.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
       height: null == height
-          ? _value.height
+          ? _self.height
           : height // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
 }
 
+/// Adds pattern-matching-related methods to [UserInfo].
+extension UserInfoPatterns on UserInfo {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UserInfo value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UserInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UserInfo value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UserInfo():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_UserInfo value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UserInfo() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int age, double weight, Gender gender, int height)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UserInfo() when $default != null:
+        return $default(_that.age, _that.weight, _that.gender, _that.height);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int age, double weight, Gender gender, int height)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UserInfo():
+        return $default(_that.age, _that.weight, _that.gender, _that.height);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int age, double weight, Gender gender, int height)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UserInfo() when $default != null:
+        return $default(_that.age, _that.weight, _that.gender, _that.height);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
-class _$UserInfoImpl implements _UserInfo {
-  const _$UserInfoImpl(
+class _UserInfo implements UserInfo {
+  const _UserInfo(
       {this.age = 0,
       this.weight = 0.0,
       this.gender = Gender.notAvailable,
       this.height = 0});
-
-  factory _$UserInfoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserInfoImplFromJson(json);
+  factory _UserInfo.fromJson(Map<String, dynamic> json) =>
+      _$UserInfoFromJson(json);
 
   @override
   @JsonKey()
@@ -159,16 +280,26 @@ class _$UserInfoImpl implements _UserInfo {
   @JsonKey()
   final int height;
 
+  /// Create a copy of UserInfo
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'UserInfo(age: $age, weight: $weight, gender: $gender, height: $height)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$UserInfoCopyWith<_UserInfo> get copyWith =>
+      __$UserInfoCopyWithImpl<_UserInfo>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$UserInfoToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserInfoImpl &&
+            other is _UserInfo &&
             (identical(other.age, age) || other.age == age) &&
             (identical(other.weight, weight) || other.weight == weight) &&
             (identical(other.gender, gender) || other.gender == gender) &&
@@ -179,45 +310,58 @@ class _$UserInfoImpl implements _UserInfo {
   @override
   int get hashCode => Object.hash(runtimeType, age, weight, gender, height);
 
-  /// Create a copy of UserInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$UserInfoImplCopyWith<_$UserInfoImpl> get copyWith =>
-      __$$UserInfoImplCopyWithImpl<_$UserInfoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserInfoImplToJson(
-      this,
-    );
+  String toString() {
+    return 'UserInfo(age: $age, weight: $weight, gender: $gender, height: $height)';
   }
 }
 
-abstract class _UserInfo implements UserInfo {
-  const factory _UserInfo(
-      {final int age,
-      final double weight,
-      final Gender gender,
-      final int height}) = _$UserInfoImpl;
+/// @nodoc
+abstract mixin class _$UserInfoCopyWith<$Res>
+    implements $UserInfoCopyWith<$Res> {
+  factory _$UserInfoCopyWith(_UserInfo value, $Res Function(_UserInfo) _then) =
+      __$UserInfoCopyWithImpl;
+  @override
+  @useResult
+  $Res call({int age, double weight, Gender gender, int height});
+}
 
-  factory _UserInfo.fromJson(Map<String, dynamic> json) =
-      _$UserInfoImpl.fromJson;
+/// @nodoc
+class __$UserInfoCopyWithImpl<$Res> implements _$UserInfoCopyWith<$Res> {
+  __$UserInfoCopyWithImpl(this._self, this._then);
 
-  @override
-  int get age;
-  @override
-  double get weight;
-  @override
-  Gender get gender;
-  @override
-  int get height;
+  final _UserInfo _self;
+  final $Res Function(_UserInfo) _then;
 
   /// Create a copy of UserInfo
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserInfoImplCopyWith<_$UserInfoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? age = null,
+    Object? weight = null,
+    Object? gender = null,
+    Object? height = null,
+  }) {
+    return _then(_UserInfo(
+      age: null == age
+          ? _self.age
+          : age // ignore: cast_nullable_to_non_nullable
+              as int,
+      weight: null == weight
+          ? _self.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as double,
+      gender: null == gender
+          ? _self.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as Gender,
+      height: null == height
+          ? _self.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
+
+// dart format on

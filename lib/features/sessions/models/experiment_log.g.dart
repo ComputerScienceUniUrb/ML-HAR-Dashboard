@@ -6,15 +6,15 @@ part of 'experiment_log.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ExperimentLogImpl _$$ExperimentLogImplFromJson(Map<String, dynamic> json) =>
-    _$ExperimentLogImpl(
+_ExperimentLog _$ExperimentLogFromJson(Map<String, dynamic> json) =>
+    _ExperimentLog(
       id: json['id'] as String,
       experimentId: json['experimentId'] as String,
       runningId: json['runningId'] as String,
       createdAt: const TimestampConverter().fromJson(json['createdAt']),
     );
 
-Map<String, dynamic> _$$ExperimentLogImplToJson(_$ExperimentLogImpl instance) =>
+Map<String, dynamic> _$ExperimentLogToJson(_ExperimentLog instance) =>
     <String, dynamic>{
       'id': instance.id,
       'experimentId': instance.experimentId,

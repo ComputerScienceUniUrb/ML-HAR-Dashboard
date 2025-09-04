@@ -48,6 +48,12 @@ class HomeScreen extends StatelessWidget {
               context.go('/experiments');
             },
           ),
+          ListTile(
+            title: const Text('Versioni Tensor Flow'),
+            onTap: () {
+              context.go('/tensor-flow');
+            },
+          ),
         ],
       ),
     );

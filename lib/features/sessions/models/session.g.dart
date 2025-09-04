@@ -6,8 +6,7 @@ part of 'session.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SessionImpl _$$SessionImplFromJson(Map<String, dynamic> json) =>
-    _$SessionImpl(
+_Session _$SessionFromJson(Map<String, dynamic> json) => _Session(
       id: json['id'] as String,
       userId: json['userId'] as String,
       name: json['name'] as String,
@@ -22,8 +21,7 @@ _$SessionImpl _$$SessionImplFromJson(Map<String, dynamic> json) =>
       createdAt: const TimestampConverter().fromJson(json['createdAt']),
     );
 
-Map<String, dynamic> _$$SessionImplToJson(_$SessionImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SessionToJson(_Session instance) => <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
       'name': instance.name,

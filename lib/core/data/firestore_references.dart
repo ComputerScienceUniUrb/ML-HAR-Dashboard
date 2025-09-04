@@ -8,6 +8,20 @@ class FirestoreReference {
     return sessionsCollection.doc(sessionId);
   }
 
+  static CollectionReference get tracksCollection =>
+      FirebaseFirestore.instance.collection('tracks');
+
+  static DocumentReference trackDoc(String trackId) {
+    return tracksCollection.doc(trackId);
+  }
+
+  static CollectionReference get tensorFlowModelCollection =>
+      FirebaseFirestore.instance.collection('tf_models');
+
+  static DocumentReference tensorFlowModelDoc(String modelId) {
+    return tensorFlowModelCollection.doc(modelId);
+  }
+
   static CollectionReference sessionStepsCollection(String sessionId) =>
       sessionDoc(sessionId).collection('steps');
 

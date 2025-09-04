@@ -7,7 +7,7 @@ class VersionWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final version = ref.watch(getVersionProvider).valueOrNull ?? '0.0.6';
+    final version = ref.watch(getVersionProvider).valueOrNull ?? '0.3.0';
 
     return Center(child: Text('v$version'));
   }

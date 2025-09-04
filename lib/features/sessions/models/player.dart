@@ -8,7 +8,7 @@ part 'player.freezed.dart';
 part 'player.g.dart';
 
 @freezed
-class Player with _$Player {
+abstract class Player with _$Player {
   const factory Player({
     required String id,
     @Default('Sconosciuto') String name,

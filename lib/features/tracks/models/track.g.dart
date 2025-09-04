@@ -6,7 +6,7 @@ part of 'track.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TrackImpl _$$TrackImplFromJson(Map<String, dynamic> json) => _$TrackImpl(
+_Track _$TrackFromJson(Map<String, dynamic> json) => _Track(
       activityType: $enumDecode(_$ActivityTypeEnumMap, json['activityType']),
       smartphonePosition:
           $enumDecode(_$SmartphonePositionEnumMap, json['smartphonePosition']),
@@ -16,15 +16,18 @@ _$TrackImpl _$$TrackImplFromJson(Map<String, dynamic> json) => _$TrackImpl(
       isInBatterySaveMode: json['isInBatterySaveMode'] as bool,
       cloudId: json['cloudId'] as String,
       downloadUrl: json['downloadUrl'] as String,
+      testDuration: (json['testDuration'] as num).toInt(),
       experimentCode: json['experimentCode'] as String?,
+      inferenceOutputs: (json['inferenceOutputs'] as List<dynamic>?)
+          ?.map((e) => InferenceOutput.fromJson(e as Map<String, dynamic>))
+          .toList(),
       os: json['os'] as String? ?? '-',
       device: json['device'] as String? ?? '-',
       appVersion: json['appVersion'] as String? ?? '-',
-      testDuration: (json['testDuration'] as num).toInt(),
+      debug: json['debug'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$TrackToJson(_Track instance) => <String, dynamic>{
       'activityType': _$ActivityTypeEnumMap[instance.activityType]!,
       'smartphonePosition':
           _$SmartphonePositionEnumMap[instance.smartphonePosition]!,
@@ -34,11 +37,13 @@ Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
       'isInBatterySaveMode': instance.isInBatterySaveMode,
       'cloudId': instance.cloudId,
       'downloadUrl': instance.downloadUrl,
+      'testDuration': instance.testDuration,
       'experimentCode': instance.experimentCode,
+      'inferenceOutputs': instance.inferenceOutputs,
       'os': instance.os,
       'device': instance.device,
       'appVersion': instance.appVersion,
-      'testDuration': instance.testDuration,
+      'debug': instance.debug,
     };
 
 const _$ActivityTypeEnumMap = {

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,205 +9,34 @@ part of 'session_step.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-SessionStep _$SessionStepFromJson(Map<String, dynamic> json) {
-  return _SessionStep.fromJson(json);
-}
 
 /// @nodoc
 mixin _$SessionStep {
-  String get id => throw _privateConstructorUsedError;
-  SessionStepAction get action => throw _privateConstructorUsedError;
-  SessionStatus get currentStatus => throw _privateConstructorUsedError;
+  String get id;
+  SessionStepAction get action;
+  SessionStatus get currentStatus;
   @TimestampConverter()
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  String? get experimentId => throw _privateConstructorUsedError;
-  String? get runningId => throw _privateConstructorUsedError;
-
-  /// Serializes this SessionStep to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  DateTime get createdAt;
+  String? get experimentId;
+  String? get runningId;
 
   /// Create a copy of SessionStep
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $SessionStepCopyWith<SessionStep> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$SessionStepCopyWithImpl<SessionStep>(this as SessionStep, _$identity);
 
-/// @nodoc
-abstract class $SessionStepCopyWith<$Res> {
-  factory $SessionStepCopyWith(
-          SessionStep value, $Res Function(SessionStep) then) =
-      _$SessionStepCopyWithImpl<$Res, SessionStep>;
-  @useResult
-  $Res call(
-      {String id,
-      SessionStepAction action,
-      SessionStatus currentStatus,
-      @TimestampConverter() DateTime createdAt,
-      String? experimentId,
-      String? runningId});
-}
-
-/// @nodoc
-class _$SessionStepCopyWithImpl<$Res, $Val extends SessionStep>
-    implements $SessionStepCopyWith<$Res> {
-  _$SessionStepCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of SessionStep
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? action = null,
-    Object? currentStatus = null,
-    Object? createdAt = null,
-    Object? experimentId = freezed,
-    Object? runningId = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      action: null == action
-          ? _value.action
-          : action // ignore: cast_nullable_to_non_nullable
-              as SessionStepAction,
-      currentStatus: null == currentStatus
-          ? _value.currentStatus
-          : currentStatus // ignore: cast_nullable_to_non_nullable
-              as SessionStatus,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      experimentId: freezed == experimentId
-          ? _value.experimentId
-          : experimentId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      runningId: freezed == runningId
-          ? _value.runningId
-          : runningId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$SessionStepImplCopyWith<$Res>
-    implements $SessionStepCopyWith<$Res> {
-  factory _$$SessionStepImplCopyWith(
-          _$SessionStepImpl value, $Res Function(_$SessionStepImpl) then) =
-      __$$SessionStepImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String id,
-      SessionStepAction action,
-      SessionStatus currentStatus,
-      @TimestampConverter() DateTime createdAt,
-      String? experimentId,
-      String? runningId});
-}
-
-/// @nodoc
-class __$$SessionStepImplCopyWithImpl<$Res>
-    extends _$SessionStepCopyWithImpl<$Res, _$SessionStepImpl>
-    implements _$$SessionStepImplCopyWith<$Res> {
-  __$$SessionStepImplCopyWithImpl(
-      _$SessionStepImpl _value, $Res Function(_$SessionStepImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SessionStep
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? action = null,
-    Object? currentStatus = null,
-    Object? createdAt = null,
-    Object? experimentId = freezed,
-    Object? runningId = freezed,
-  }) {
-    return _then(_$SessionStepImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      action: null == action
-          ? _value.action
-          : action // ignore: cast_nullable_to_non_nullable
-              as SessionStepAction,
-      currentStatus: null == currentStatus
-          ? _value.currentStatus
-          : currentStatus // ignore: cast_nullable_to_non_nullable
-              as SessionStatus,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      experimentId: freezed == experimentId
-          ? _value.experimentId
-          : experimentId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      runningId: freezed == runningId
-          ? _value.runningId
-          : runningId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$SessionStepImpl implements _SessionStep {
-  const _$SessionStepImpl(
-      {required this.id,
-      required this.action,
-      required this.currentStatus,
-      @TimestampConverter() required this.createdAt,
-      this.experimentId,
-      this.runningId});
-
-  factory _$SessionStepImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SessionStepImplFromJson(json);
-
-  @override
-  final String id;
-  @override
-  final SessionStepAction action;
-  @override
-  final SessionStatus currentStatus;
-  @override
-  @TimestampConverter()
-  final DateTime createdAt;
-  @override
-  final String? experimentId;
-  @override
-  final String? runningId;
-
-  @override
-  String toString() {
-    return 'SessionStep(id: $id, action: $action, currentStatus: $currentStatus, createdAt: $createdAt, experimentId: $experimentId, runningId: $runningId)';
-  }
+  /// Serializes this SessionStep to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SessionStepImpl &&
+            other is SessionStep &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.action, action) || other.action == action) &&
             (identical(other.currentStatus, currentStatus) ||
@@ -225,52 +54,389 @@ class _$SessionStepImpl implements _SessionStep {
   int get hashCode => Object.hash(runtimeType, id, action, currentStatus,
       createdAt, experimentId, runningId);
 
-  /// Create a copy of SessionStep
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$SessionStepImplCopyWith<_$SessionStepImpl> get copyWith =>
-      __$$SessionStepImplCopyWithImpl<_$SessionStepImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SessionStepImplToJson(
-      this,
-    );
+  String toString() {
+    return 'SessionStep(id: $id, action: $action, currentStatus: $currentStatus, createdAt: $createdAt, experimentId: $experimentId, runningId: $runningId)';
   }
 }
 
-abstract class _SessionStep implements SessionStep {
-  const factory _SessionStep(
-      {required final String id,
-      required final SessionStepAction action,
-      required final SessionStatus currentStatus,
-      @TimestampConverter() required final DateTime createdAt,
-      final String? experimentId,
-      final String? runningId}) = _$SessionStepImpl;
+/// @nodoc
+abstract mixin class $SessionStepCopyWith<$Res> {
+  factory $SessionStepCopyWith(
+          SessionStep value, $Res Function(SessionStep) _then) =
+      _$SessionStepCopyWithImpl;
+  @useResult
+  $Res call(
+      {String id,
+      SessionStepAction action,
+      SessionStatus currentStatus,
+      @TimestampConverter() DateTime createdAt,
+      String? experimentId,
+      String? runningId});
+}
 
-  factory _SessionStep.fromJson(Map<String, dynamic> json) =
-      _$SessionStepImpl.fromJson;
+/// @nodoc
+class _$SessionStepCopyWithImpl<$Res> implements $SessionStepCopyWith<$Res> {
+  _$SessionStepCopyWithImpl(this._self, this._then);
+
+  final SessionStep _self;
+  final $Res Function(SessionStep) _then;
+
+  /// Create a copy of SessionStep
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? action = null,
+    Object? currentStatus = null,
+    Object? createdAt = null,
+    Object? experimentId = freezed,
+    Object? runningId = freezed,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      action: null == action
+          ? _self.action
+          : action // ignore: cast_nullable_to_non_nullable
+              as SessionStepAction,
+      currentStatus: null == currentStatus
+          ? _self.currentStatus
+          : currentStatus // ignore: cast_nullable_to_non_nullable
+              as SessionStatus,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      experimentId: freezed == experimentId
+          ? _self.experimentId
+          : experimentId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      runningId: freezed == runningId
+          ? _self.runningId
+          : runningId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [SessionStep].
+extension SessionStepPatterns on SessionStep {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SessionStep value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SessionStep() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SessionStep value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SessionStep():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SessionStep value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SessionStep() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String id,
+            SessionStepAction action,
+            SessionStatus currentStatus,
+            @TimestampConverter() DateTime createdAt,
+            String? experimentId,
+            String? runningId)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SessionStep() when $default != null:
+        return $default(_that.id, _that.action, _that.currentStatus,
+            _that.createdAt, _that.experimentId, _that.runningId);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String id,
+            SessionStepAction action,
+            SessionStatus currentStatus,
+            @TimestampConverter() DateTime createdAt,
+            String? experimentId,
+            String? runningId)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SessionStep():
+        return $default(_that.id, _that.action, _that.currentStatus,
+            _that.createdAt, _that.experimentId, _that.runningId);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String id,
+            SessionStepAction action,
+            SessionStatus currentStatus,
+            @TimestampConverter() DateTime createdAt,
+            String? experimentId,
+            String? runningId)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SessionStep() when $default != null:
+        return $default(_that.id, _that.action, _that.currentStatus,
+            _that.createdAt, _that.experimentId, _that.runningId);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _SessionStep implements SessionStep {
+  const _SessionStep(
+      {required this.id,
+      required this.action,
+      required this.currentStatus,
+      @TimestampConverter() required this.createdAt,
+      this.experimentId,
+      this.runningId});
+  factory _SessionStep.fromJson(Map<String, dynamic> json) =>
+      _$SessionStepFromJson(json);
 
   @override
-  String get id;
+  final String id;
   @override
-  SessionStepAction get action;
+  final SessionStepAction action;
   @override
-  SessionStatus get currentStatus;
+  final SessionStatus currentStatus;
   @override
   @TimestampConverter()
-  DateTime get createdAt;
+  final DateTime createdAt;
   @override
-  String? get experimentId;
+  final String? experimentId;
   @override
-  String? get runningId;
+  final String? runningId;
 
   /// Create a copy of SessionStep
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SessionStepImplCopyWith<_$SessionStepImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$SessionStepCopyWith<_SessionStep> get copyWith =>
+      __$SessionStepCopyWithImpl<_SessionStep>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SessionStepToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SessionStep &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.action, action) || other.action == action) &&
+            (identical(other.currentStatus, currentStatus) ||
+                other.currentStatus == currentStatus) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.experimentId, experimentId) ||
+                other.experimentId == experimentId) &&
+            (identical(other.runningId, runningId) ||
+                other.runningId == runningId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, action, currentStatus,
+      createdAt, experimentId, runningId);
+
+  @override
+  String toString() {
+    return 'SessionStep(id: $id, action: $action, currentStatus: $currentStatus, createdAt: $createdAt, experimentId: $experimentId, runningId: $runningId)';
+  }
 }
+
+/// @nodoc
+abstract mixin class _$SessionStepCopyWith<$Res>
+    implements $SessionStepCopyWith<$Res> {
+  factory _$SessionStepCopyWith(
+          _SessionStep value, $Res Function(_SessionStep) _then) =
+      __$SessionStepCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      SessionStepAction action,
+      SessionStatus currentStatus,
+      @TimestampConverter() DateTime createdAt,
+      String? experimentId,
+      String? runningId});
+}
+
+/// @nodoc
+class __$SessionStepCopyWithImpl<$Res> implements _$SessionStepCopyWith<$Res> {
+  __$SessionStepCopyWithImpl(this._self, this._then);
+
+  final _SessionStep _self;
+  final $Res Function(_SessionStep) _then;
+
+  /// Create a copy of SessionStep
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? action = null,
+    Object? currentStatus = null,
+    Object? createdAt = null,
+    Object? experimentId = freezed,
+    Object? runningId = freezed,
+  }) {
+    return _then(_SessionStep(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      action: null == action
+          ? _self.action
+          : action // ignore: cast_nullable_to_non_nullable
+              as SessionStepAction,
+      currentStatus: null == currentStatus
+          ? _self.currentStatus
+          : currentStatus // ignore: cast_nullable_to_non_nullable
+              as SessionStatus,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      experimentId: freezed == experimentId
+          ? _self.experimentId
+          : experimentId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      runningId: freezed == runningId
+          ? _self.runningId
+          : runningId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+// dart format on

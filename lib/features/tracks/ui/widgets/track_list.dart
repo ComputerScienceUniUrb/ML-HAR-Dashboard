@@ -1,6 +1,10 @@
+import 'package:aifit_dashboard/core/data/firestore_references.dart';
 import 'package:aifit_dashboard/core/utils.dart';
 import 'package:aifit_dashboard/features/tracks/application/tracks_notifier.dart';
+import 'package:aifit_dashboard/features/tracks/models/inference_output.dart';
 import 'package:aifit_dashboard/features/tracks/models/track.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -48,7 +52,7 @@ class _TrackGridState extends State<TrackGrid> {
     init();
   }
 
-  init() {
+  void init() {
     rows.clear();
     columns.clear();
     for (final t in widget.tracks) {
@@ -78,6 +82,125 @@ class _TrackGridState extends State<TrackGrid> {
         ),
         PlutoColumn(
           readOnly: true,
+          title: 'Inference',
+          field: 'inference',
+          type: PlutoColumnType.text(),
+          renderer: (rendererContext) {
+            final enabled = rendererContext
+                    .row.cells[rendererContext.column.field]?.value !=
+                null;
+            return ElevatedButton(
+              onPressed: enabled
+                  ? () async {
+                final windowSize = 200;
+                final allOutputs = rendererContext
+                          .row.cells[rendererContext.column.field]?.value;
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          'Risultati Inferenza (${allOutputs.length} blocchi non sovrapposti)',
+                                          style: const TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(),
+                                  if (allOutputs.isEmpty)
+                                    const Padding(
+                                      padding: EdgeInsets.all(20),
+                                      child:
+                                          Text('Nessun risultato da mostrare.'),
+                                    )
+                                  else
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.6,
+                                      width: double.maxFinite,
+                                      child: ListView.builder(
+                                        itemCount: allOutputs.length,
+                                        itemBuilder: (context, index) {
+                                          final output = allOutputs[index] as InferenceOutput;
+                                          final startIndex = index * windowSize;
+                                          final endIndex =
+                                              startIndex + windowSize - 1;
+                                          return Card(
+                                            margin: const EdgeInsets.symmetric(
+                                                vertical: 8.0),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(12.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Blocco #${index + 1} (Campioni $startIndex - $endIndex)',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .primary,
+                                                    ),
+                                                  ),
+                                                  const Divider(),
+                                                  const SizedBox(height: 4),
+                                                  Text('Age: ${output.age}'),
+                                                  const SizedBox(height: 4),
+                                                  Text(
+                                                      'Weight: ${output.weight}'),
+                                                  const SizedBox(height: 4),
+                                                  Text(
+                                                      'Height: ${output.height}'),
+                                                  const SizedBox(height: 4),
+                                                  Text(
+                                                    'Activity: ${output.activity.name} (index: ${output.activityIndex})',
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  const SizedBox(height: 4),
+                                                  for (final a
+                                                      in output.activities)
+                                                    Text(
+                                                        '\t\t${a.keys.first} (${a.values.first})'),
+                                                  const SizedBox(height: 4),
+                                                  Text(
+                                                      'Gender: ${output.gender}'),
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    }
+                  : null,
+              child: const Text('Show'),
+            );
+          },
+        ),
+        PlutoColumn(
+          readOnly: true,
           title: 'Date',
           field: 'date',
           type: PlutoColumnType.text(),
@@ -88,6 +211,7 @@ class _TrackGridState extends State<TrackGrid> {
           field: 'code',
           type: PlutoColumnType.text(),
         ),
+
         PlutoColumn(
           readOnly: true,
           title: '%',
@@ -178,6 +302,31 @@ class _TrackGridState extends State<TrackGrid> {
           width: 100,
           type: PlutoColumnType.text(),
         ),
+        PlutoColumn(
+          readOnly: true,
+          title: 'Is it Debug?',
+          field: 'debug',
+          width: 50,
+          type: PlutoColumnType.text(),
+        ),
+        PlutoColumn(
+          title: 'Delete track',
+          field: 'delete',
+          type: PlutoColumnType.text(),
+          renderer: (rendererContext) {
+            return ElevatedButton(
+              onPressed: () async {
+                final trackId = rendererContext
+                    .row.cells[rendererContext.column.field]!.value
+                    .toString();
+                print(trackId);
+                // await FirestoreReference.trackDoc(trackId).delete();
+                // await FirebaseStorage.instance.refFromURL(widget.tracks[].downloadUrl).delete();
+              },
+              child: const Text('Delete'),
+            );
+          },
+        ),
       ],
     );
   }
@@ -262,9 +411,10 @@ enum _UserColumnMenuItem {
 }
 
 extension TrackRow on Track {
-  toCell() {
+  Map<String, PlutoCell> toCell() {
     return {
       'download_url': PlutoCell(value: downloadUrl),
+      'inference': PlutoCell(value: inferenceOutputs),
       'date': PlutoCell(value: genericDateFormatter.format(timestamp)),
       'battery': PlutoCell(value: startBatteryLevel),
       'code': PlutoCell(value: experimentCode ?? '-'),
@@ -279,6 +429,8 @@ extension TrackRow on Track {
       'os': PlutoCell(value: os),
       'device': PlutoCell(value: device),
       'app_version': PlutoCell(value: appVersion),
+      'delete': PlutoCell(value: cloudId),
+      'debug': PlutoCell(value: debug),
     };
   }
 }

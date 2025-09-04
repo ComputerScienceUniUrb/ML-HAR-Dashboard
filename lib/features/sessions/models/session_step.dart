@@ -48,7 +48,7 @@ enum SessionStepAction {
 }
 
 @freezed
-class SessionStep with _$SessionStep {
+abstract class SessionStep with _$SessionStep {
   const factory SessionStep({
     required String id,
     required SessionStepAction action,

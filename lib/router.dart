@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:go_router/go_router.dart';
 
+import 'features/tensor_flow/tensor_flow_screen.dart';
+
 // GoRouter configuration
 final router = GoRouter(
   initialLocation: '/',
@@ -36,6 +38,10 @@ final router = GoRouter(
           GoRoute(
             path: 'tracks',
             builder: (context, state) => const TrackList(),
+          ),
+          GoRoute(
+            path: 'tensor-flow',
+            builder: (context, state) => const TensorFlowScreen(),
           ),
           GoRoute(
             path: 'sessions',

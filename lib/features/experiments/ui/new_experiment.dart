@@ -15,6 +15,8 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../../core/constants.dart';
+
 class NewExperimentScreen extends HookConsumerWidget {
   final Experiment? initialExperiment;
   final String? initialExperimentId;
@@ -27,6 +29,7 @@ class NewExperimentScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final formKey = useMemoized(() => GlobalKey<FormState>(), []);
     var experiment = initialExperiment;
     final exId = initialExperimentId;
     if (exId != null) {
@@ -79,198 +82,224 @@ class NewExperimentScreen extends HookConsumerWidget {
                 ? null
                 : () async {
                     final userId = FirebaseAuth.instance.currentUser?.uid;
-
                     if (userId == null) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('Utente non autenticato.')));
                       return;
                     }
 
-                    SmartDialog.showLoading();
-                    try {
-                      final duration = int.tryParse(durationController.text);
-                      isLoading.value = true;
-                      final data = Experiment(
-                        userId: userId,
-                        id: experiment?.id ?? const Uuid().v4(),
-                        name: nameController.text.trim(),
-                        shortCode:
-                            shortCodeController.text.trim().toLowerCase(),
-                        enabled: enabled.value,
-                        createdAt: experiment?.createdAt ?? DateTime.now(),
-                        activityTypeOverride: activityTypeOverride.value,
-                        smartphonePositionOverride:
-                            smartphonePositionOverride.value,
-                        duration: duration,
-                      );
-                      await FirebaseFirestore.instance
-                          .collection('experiments')
-                          .doc(data.id)
-                          .set(
-                            data.toJson(),
-                            SetOptions(merge: true),
-                          );
-                      isLoading.value = false;
-                      SmartDialog.dismiss();
-                      showMessage(
-                        experiment != null
-                            ? 'Esperimento aggiornato!'
-                            : 'Esperimento creato!',
-                      );
-                    } catch (ex, st) {
-                      SmartDialog.dismiss();
-                      isLoading.value = false;
-                      print(ex);
-                      print(st);
+                    if (formKey.currentState?.validate() ?? false) {
+                      SmartDialog.showLoading();
+                      try {
+                        final duration = int.tryParse(durationController.text);
 
-                      showError(ex.toString());
+                        if (duration == null || duration > maxTestDuration) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  'La durata non può superare i 30 secondi.'),
+                            ),
+                          );
+                          return;
+                        }
+
+                        isLoading.value = true;
+                        final data = Experiment(
+                          userId: userId,
+                          id: experiment?.id ?? const Uuid().v4(),
+                          name: nameController.text.trim(),
+                          shortCode:
+                              shortCodeController.text.trim().toLowerCase(),
+                          enabled: enabled.value,
+                          createdAt: experiment?.createdAt ?? DateTime.now(),
+                          activityTypeOverride: activityTypeOverride.value,
+                          smartphonePositionOverride:
+                              smartphonePositionOverride.value,
+                          duration: duration,
+                        );
+                        await FirebaseFirestore.instance
+                            .collection('experiments')
+                            .doc(data.id)
+                            .set(
+                              data.toJson(),
+                              SetOptions(merge: true),
+                            );
+                        isLoading.value = false;
+                        SmartDialog.dismiss();
+                        showMessage(
+                          experiment != null
+                              ? 'Esperimento aggiornato!'
+                              : 'Esperimento creato!',
+                        );
+                      } catch (ex, st) {
+                        SmartDialog.dismiss();
+                        isLoading.value = false;
+                        print(ex);
+                        print(st);
+
+                        showError(ex.toString());
+                      }
                     }
                   },
             child: const Text('Salva'),
           ),
         ],
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          MyTextField(
-            controller: nameController,
-            hint: 'Nome esperimento',
-          ),
-          const SizedBox(height: 8),
-          MyTextField(
-            controller: descController,
-            maxLines: 3,
-            hint: 'Descrizione esperimento',
-          ),
-          const SizedBox(height: 8),
-          MyTextField(
-            controller: shortCodeController,
-            hint: 'Codice esperimento',
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              Expanded(
-                child: CustomDropdown(
-                  hintText: 'Tipo di attività',
-                  enabled: !isLoading.value,
-                  initialItem: activityTypeOverride.value,
-                  headerBuilder: (context, item, enabled) {
-                    return Text(
-                      item.translate,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    );
-                  },
-                  listItemBuilder: (context, item, isSelected, onSelect) {
-                    return Text(item.translate);
-                  },
-                  items: ActivityType.values,
-                  onChanged: (v) {
-                    if (v == activityTypeOverride.value) return;
-                    if (activityTypeOverride.value == ActivityType.onBicycle ||
-                        v == ActivityType.onBicycle) {
-                      activityTypeOverride.value = null;
-                    }
-                    activityTypeOverride.value = v;
-                  },
-                ),
-              ),
-              IconButton(
-                icon: const Icon(Icons.clear),
-                color: Colors.red,
-                onPressed: !isLoading.value
-                    ? () {
+      body: Form(
+        key: formKey,
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            MyTextField(
+              controller: nameController,
+              hint: 'Nome esperimento',
+            ),
+            const SizedBox(height: 8),
+            MyTextField(
+              controller: descController,
+              maxLines: 3,
+              hint: 'Descrizione esperimento',
+            ),
+            const SizedBox(height: 8),
+            MyTextField(
+              controller: shortCodeController,
+              hint: 'Codice esperimento',
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomDropdown(
+                    hintText: 'Tipo di attività',
+                    enabled: !isLoading.value,
+                    initialItem: activityTypeOverride.value,
+                    headerBuilder: (context, item, enabled) {
+                      return Text(
+                        item.translate,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    },
+                    listItemBuilder: (context, item, isSelected, onSelect) {
+                      return Text(item.translate);
+                    },
+                    items: ActivityType.values,
+                    onChanged: (v) {
+                      if (v == activityTypeOverride.value) return;
+                      if (activityTypeOverride.value ==
+                              ActivityType.onBicycle ||
+                          v == ActivityType.onBicycle) {
                         activityTypeOverride.value = null;
                       }
-                    : null,
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              Expanded(
-                child: CustomDropdown(
-                  hintText: 'Posizione smartphone',
-                  enabled: !isLoading.value,
-                  initialItem: smartphonePositionOverride.value,
-                  headerBuilder: (context, item, enabled) {
-                    return Text(
-                      item.translate,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    );
-                  },
-                  listItemBuilder: (context, item, isSelected, onSelect) {
-                    return Text(item.translate);
-                  },
-                  items: activityTypeOverride.value != ActivityType.onBicycle
-                      ? SmartphonePosition.values
-                          .take(SmartphonePosition.values.length - 1)
-                          .toList()
-                      : SmartphonePosition.values,
-                  onChanged: (v) {
-                    smartphonePositionOverride.value = v;
-                  },
-                ),
-              ),
-              IconButton(
-                icon: const Icon(Icons.clear),
-                color: Colors.red,
-                onPressed: !isLoading.value
-                    ? () {
-                        smartphonePositionOverride.value = null;
-                      }
-                    : null,
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              for (final d in durations)
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: FilterChip(
-                    selected: int.tryParse(durationController.text) == d,
-                    label: Text('$d sec'),
-                    onSelected: (bool value) {
-                      durationController.text = d.toString();
+                      activityTypeOverride.value = v;
                     },
                   ),
                 ),
-              Expanded(
-                child: MyTextField(
-                  controller: durationController,
-                  maxLines: 1,
-                  suffix: 'secondi',
-                  hint: 'Durata in secondi',
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                  ],
+                IconButton(
+                  icon: const Icon(Icons.clear),
+                  color: Colors.red,
+                  onPressed: !isLoading.value
+                      ? () {
+                          activityTypeOverride.value = null;
+                        }
+                      : null,
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              const Text('Abilitato?'),
-              Switch(
-                  value: enabled.value,
-                  onChanged: (v) {
-                    enabled.value = v;
-                  })
-            ],
-          ),
-        ],
+              ],
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomDropdown(
+                    hintText: 'Posizione smartphone',
+                    enabled: !isLoading.value,
+                    initialItem: smartphonePositionOverride.value,
+                    headerBuilder: (context, item, enabled) {
+                      return Text(
+                        item.translate,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    },
+                    listItemBuilder: (context, item, isSelected, onSelect) {
+                      return Text(item.translate);
+                    },
+                    items: activityTypeOverride.value != ActivityType.onBicycle
+                        ? SmartphonePosition.values
+                            .take(SmartphonePosition.values.length - 1)
+                            .toList()
+                        : SmartphonePosition.values,
+                    onChanged: (v) {
+                      smartphonePositionOverride.value = v;
+                    },
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.clear),
+                  color: Colors.red,
+                  onPressed: !isLoading.value
+                      ? () {
+                          smartphonePositionOverride.value = null;
+                        }
+                      : null,
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                for (final d in selectableDurations)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: FilterChip(
+                      selected: int.tryParse(durationController.text) == d,
+                      label: Text('$d sec'),
+                      onSelected: (bool value) {
+                        durationController.text = d.toString();
+                      },
+                    ),
+                  ),
+                Expanded(
+                  child: MyTextField(
+                    controller: durationController,
+                    maxLines: 1,
+                    suffix: 'secondi',
+                    hint: 'Durata in secondi',
+                    validator: (value) {
+                      const error =
+                          'La durata inserita non è valida, inserire un valore da 5 a 30';
+                      if (value == null) return error;
+                      final duration = int.tryParse(value);
+                      if (duration == null ||
+                          duration > maxTestDuration ||
+                          duration < 5) {
+                        return error;
+                      }
+                      return null;
+                    },
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                const Text('Abilitato?'),
+                Switch(
+                    value: enabled.value,
+                    onChanged: (v) {
+                      enabled.value = v;
+                    })
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 }
-
-final durations = [5, 10, 15, 20, 30];

@@ -8,6 +8,7 @@ class MyTextField extends StatelessWidget {
   final String? suffix;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
+  final FormFieldValidator<String>? validator;
 
   const MyTextField({
     super.key,
@@ -17,6 +18,7 @@ class MyTextField extends StatelessWidget {
     this.suffix,
     this.keyboardType,
     this.inputFormatters,
+    this.validator,
   });
 
   @override
@@ -31,6 +33,7 @@ class MyTextField extends StatelessWidget {
       keyboardType: keyboardType,
       inputFormatters: inputFormatters,
       maxLines: maxLines,
+      validator: validator,
     );
   }
 }
